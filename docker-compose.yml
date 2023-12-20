@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: loterias_admin
+      MONGO_INITDB_ROOT_PASSWORD: loterias_admin_1234
+    ports:
+      - "27017:27017"
+    command: mongod --bind_ip 0.0.0.0
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: loterias_admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: loterias_admin_1234
+      ME_CONFIG_MONGODB_URL: mongodb://loterias_admin:loterias_admin_1234@mongodb:27017/
+
+  seeders:
+    build: ./seeders
+    depends_on:
+      - mongodb
