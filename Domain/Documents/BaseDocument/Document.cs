@@ -1,4 +1,4 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

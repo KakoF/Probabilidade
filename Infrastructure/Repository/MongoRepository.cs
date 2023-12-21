@@ -35,10 +35,8 @@ namespace Infrastructure.Repository
             return await _collection.Find(filterExpression).ToListAsync();
         }
 
-        public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression = null, SortDefinition<TDocument> sorterExpression = null)
+        public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression, SortDefinition<TDocument> sorterExpression = null)
         {
-            if (filterExpression == null)
-                return await _collection.AsQueryable().FirstOrDefaultAsync();
             if (sorterExpression == null)
                 return await _collection.Find(filterExpression).FirstOrDefaultAsync();
             return await _collection.Find(filterExpression).Sort(sorterExpression).FirstOrDefaultAsync();

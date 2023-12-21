@@ -10,7 +10,7 @@ namespace Domain.Interfaces.Repository
 
         Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression);
 
-        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression = null, SortDefinition<TDocument> sorterExpression = null);
+        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression,  SortDefinition<TDocument> sorterExpression = null);
 
         Task<TDocument> FindByIdAsync(string id);
 

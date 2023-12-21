@@ -19,7 +19,7 @@ namespace Infrastructure.Repository
 
         public virtual async Task<TDocument> GetLastAsync()
         {
-            return await _repository.FindOneAsync(sorterExpression: Builders<TDocument>.Sort.Descending(c => c.Data));
+            return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<TDocument>.Sort.Descending(c => c.Concurso));
         }
     }
 }
