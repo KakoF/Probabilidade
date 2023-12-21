@@ -12,8 +12,6 @@ builder.Services.AddControllers()
   .AddNewtonsoftJson(options => options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore)
   .AddJsonOptions(opt =>
   {
-      //opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-      //opt.JsonSerializerOptions.Converters.Add(new OptOutJsonConverterFactory(new JsonStringEnumConverter(), typeof(eFileType)));
       opt.JsonSerializerOptions.Converters.Add(new OptOutJsonConverterFactory(new JsonStringEnumConverter()));
   });
 
