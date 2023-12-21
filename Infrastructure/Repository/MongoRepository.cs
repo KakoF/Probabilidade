@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repository
 {
-    internal class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : Document
+    public class MongoRepository<TDocument> : IMongoRepository<TDocument> where TDocument : Document
     {
         private readonly IMongoCollection<TDocument> _collection;
 
@@ -25,7 +25,7 @@ namespace Infrastructure.Repository
                 .FirstOrDefault())?.CollectionName;
         }
 
-        public virtual async Task<IEnumerable<TDocument>> FindAll()
+        public virtual async Task<IEnumerable<TDocument>> FindAllAsync()
         {
             return await _collection.AsQueryable().ToListAsync();
         }
@@ -35,9 +35,13 @@ namespace Infrastructure.Repository
             return await _collection.Find(filterExpression).ToListAsync();
         }
 
-        public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
+        public virtual async Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression = null, SortDefinition<TDocument> sorterExpression = null)
         {
-            return await _collection.Find(filterExpression).FirstOrDefaultAsync();
+            if (filterExpression == null)
+                return await _collection.AsQueryable().FirstOrDefaultAsync();
+            if (sorterExpression == null)
+                return await _collection.Find(filterExpression).FirstOrDefaultAsync();
+            return await _collection.Find(filterExpression).Sort(sorterExpression).FirstOrDefaultAsync();
         }
 
         public virtual async Task<TDocument> FindByIdAsync(string id)
@@ -82,6 +86,6 @@ namespace Infrastructure.Repository
             await _collection.DeleteManyAsync(filterExpression);
         }
 
-        
+
     }
 }

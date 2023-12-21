@@ -1,15 +1,16 @@
 ﻿using Domain.Documents.BaseDocument;
+using MongoDB.Driver;
 using System.Linq.Expressions;
 
 namespace Domain.Interfaces.Repository
 {
     public interface IMongoRepository<TDocument> where TDocument : Document
     {
-        Task<IEnumerable<TDocument>> FindAll();
+        Task<IEnumerable<TDocument>> FindAllAsync();
 
         Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression);
 
-        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression = null, SortDefinition<TDocument> sorterExpression = null);
 
         Task<TDocument> FindByIdAsync(string id);
 

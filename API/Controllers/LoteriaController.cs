@@ -1,4 +1,6 @@
+using Domain.Documents;
 using Domain.Enums;
+using Domain.Interfaces.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -7,15 +9,19 @@ namespace API.Controllers
     [Route("[controller]")]
     public class LoteriaController : ControllerBase
     {
-        public LoteriaController()
+        private readonly IMegaSenaRepository<MegaSenaDocument> _repo;
+
+        public LoteriaController(IMegaSenaRepository<MegaSenaDocument> repo)
         {
+            _repo = repo;
         }
 
         [HttpGet]
         [Route("{loteria}")]
-        public IActionResult GetAsync(eLoteria loteria)
+        public async Task<IActionResult> GetAsync(eLoteria loteria)
         {
-            return Ok();
+            var teste = await _repo.GetLastAsync();
+            return Ok(teste);
         }
 
         [HttpGet]
