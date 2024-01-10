@@ -1,5 +1,5 @@
-
 using API.Helpers;
+using Service;
 using Infrastructure;
 using Infrastructure.Configs.MongoConfigs;
 using Microsoft.Extensions.Options;
@@ -20,6 +20,7 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton(serviceProvider =>
         serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
+builder.Services.ConfigureService(builder.Configuration);
 builder.Services.ConfigureInfraStructure();
 
 
