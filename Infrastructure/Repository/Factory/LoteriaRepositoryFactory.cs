@@ -19,9 +19,7 @@ namespace Infrastructure.Repository.Factory
             switch (loteria)
             {
                 case eLoteria.DuplaSena:
-                    var teste = new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)).GetLastAsync() as ILoteriaRepository<T>;
-                    var outrotste = teste.GetLastAsync();
-                    return teste;
+                    return new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.Federal:
                     return new FederalRepository(new MongoRepository<FederalDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.LotoFacil:
