@@ -4,8 +4,8 @@ using Domain.Interfaces.Repository;
 
 namespace Domain.Interfaces.Factory
 {
-    public interface ILoteriaRepositoryFactory
+    public interface ILoteriaRepositoryFactory<T> where T : LoteriaDocument
     {
-        ILoteriaRepository<LoteriaDocument> Create(eLoteria loteria);
+        ILoteriaRepository<T> CreateCommand(eLoteria loteria);
     }
 }

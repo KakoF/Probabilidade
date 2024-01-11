@@ -7,21 +7,21 @@ namespace Service.Services
 {
     public class LoteriaService : ILoteriaService
     {
-        private readonly ILoteriaRepositoryFactory _repositoryFactory;
+        private readonly ILoteriaRepositoryFactory<LoteriaDocument> _repositoryFactory;
 
-        public LoteriaService(ILoteriaRepositoryFactory repositoryFactory)
+        public LoteriaService(ILoteriaRepositoryFactory<LoteriaDocument> repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
         public async Task<IEnumerable<LoteriaDocument>> GetAsync(eLoteria loteria)
         {
-            var repository = _repositoryFactory.Create(loteria);
+            var repository = _repositoryFactory.CreateCommand(loteria);
             return await repository.GetAsync();
         }
         public async Task<LoteriaDocument> GetLastAsync(eLoteria loteria)
         {
-            var repository = _repositoryFactory.Create(loteria);
+            var repository = _repositoryFactory.CreateCommand(loteria);
             return await repository.GetLastAsync();
         }
     }

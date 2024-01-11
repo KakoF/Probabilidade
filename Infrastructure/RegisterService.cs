@@ -21,7 +21,7 @@ namespace Infrastructure
             services.AddScoped<IQuinaRepository<QuinaDocument>, QuinaRepository>();
             services.AddScoped<ISuperSeteRepository<SuperSeteDocument>, SuperSeteRepository>();
             services.AddScoped<ITimeManiaRepository<TimeManiaDocument>, TimeManiaRepository>();
-            services.AddScoped<ILoteriaRepositoryFactory, LoteriaRepositoryFactory>();
+            services.AddScoped(typeof(ILoteriaRepositoryFactory<LoteriaDocument>), typeof(LoteriaRepositoryFactory<LoteriaDocument>));
         }
     }
 }

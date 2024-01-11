@@ -1,5 +1,4 @@
 ﻿using Domain.Documents;
-using Domain.Documents.BaseDocument;
 using Domain.Enums;
 using Domain.Interfaces.Factory;
 using Domain.Interfaces.Repository;
@@ -7,40 +6,42 @@ using Infrastructure.Configs.MongoConfigs;
 
 namespace Infrastructure.Repository.Factory
 {
-    public class LoteriaRepositoryFactory : ILoteriaRepositoryFactory
+    public class LoteriaRepositoryFactory<T> : ILoteriaRepositoryFactory<T> where T : LoteriaDocument
     {
-        private readonly IMongoRepository<Document> _repository;
         private readonly MongoDbSettings _settings;
-        public LoteriaRepositoryFactory(IMongoRepository<Document> repository, MongoDbSettings settings)
+        public LoteriaRepositoryFactory(MongoDbSettings settings)
         {
-            _repository = repository;
             _settings = settings;
         }
-        public ILoteriaRepository<LoteriaDocument> Create(eLoteria loteria)
+
+        public ILoteriaRepository<T> CreateCommand(eLoteria loteria)
         {
             switch (loteria)
             {
                 case eLoteria.DuplaSena:
-                    return (ILoteriaRepository<LoteriaDocument>)new DuplaSenaRepository((IMongoRepository<DuplaSenaDocument>)_repository);
+                    var teste = new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)).GetLastAsync() as ILoteriaRepository<T>;
+                    var outrotste = teste.GetLastAsync();
+                    return teste;
                 case eLoteria.Federal:
-                    return (ILoteriaRepository<LoteriaDocument>)new FederalRepository((IMongoRepository<FederalDocument>)_repository);
+                    return new FederalRepository(new MongoRepository<FederalDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.LotoFacil:
-                    return (ILoteriaRepository<LoteriaDocument>)new LotoFacilRepository((IMongoRepository<LotoFacilDocument>)_repository);
+                    return new LotoFacilRepository(new MongoRepository<LotoFacilDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.LotoMania:
-                    return (ILoteriaRepository<LoteriaDocument>)new LotoManiaRepository((IMongoRepository<LotoManiaDocument>)_repository);
+                    return new LotoManiaRepository(new MongoRepository<LotoManiaDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.MaisMilionaria:
-                    return (ILoteriaRepository<LoteriaDocument>)new MaisMilionariaRepository((IMongoRepository<MaisMilionariaDocument>)_repository);
+                    return new MaisMilionariaRepository(new MongoRepository<MaisMilionariaDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.MegaSena:
-                    return (ILoteriaRepository<LoteriaDocument>)new MegaSenaRepository((IMongoRepository<MegaSenaDocument>)_repository);
+                    return new MegaSenaRepository(new MongoRepository<MegaSenaDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.Quina:
-                    return (ILoteriaRepository<LoteriaDocument>)new QuinaRepository((IMongoRepository<QuinaDocument>)_repository);
+                    return new QuinaRepository(new MongoRepository<QuinaDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.SuperSete:
-                    return (ILoteriaRepository<LoteriaDocument>)new SuperSeteRepository((IMongoRepository<SuperSeteDocument>)_repository);
+                    return new SuperSeteRepository(new MongoRepository<SuperSeteDocument>(_settings)) as ILoteriaRepository<T>;
                 case eLoteria.TimeMania:
-                    return (ILoteriaRepository<LoteriaDocument>)new TimeManiaRepository((IMongoRepository<TimeManiaDocument>)_repository);
+                    return new TimeManiaRepository(new MongoRepository<TimeManiaDocument>(_settings)) as ILoteriaRepository<T>;
                 default:
                     throw new InvalidOperationException("Tipo de loteria inválida");
             }
         }
     }
+
 }
