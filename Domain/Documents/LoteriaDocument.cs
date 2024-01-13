@@ -27,7 +27,13 @@ namespace Domain.Documents
         [BsonElement("trevos")]
         public IEnumerable<string> Trevos { get; private set; }
 
-        public LoteriaDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos)
+        [BsonRequired()]
+        [BsonElement("premiacoes")]
+        public IEnumerable<Premiacao> Premiacoes { get; private set; }
+
+
+
+        public LoteriaDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos, IEnumerable<Premiacao> premiacoes)
         {
             Loteria = loteria;
             Concurso = concurso;
@@ -36,6 +42,24 @@ namespace Domain.Documents
             DezenasOrdemSorteio = dezenasOrdemSorteio;
             Dezenas = dezenas;
             Trevos = trevos;
+            Premiacoes = premiacoes;
         }
+    }
+
+
+    public class Premiacao
+    {
+        [BsonRequired()]
+        [BsonElement("descricao")]
+        public string Descricao { get; set; }
+        [BsonRequired()]
+        [BsonElement("faixa")]
+        public int Faixa { get; set; }
+        [BsonRequired()]
+        [BsonElement("ganhadores")]
+        public int Ganhadores { get; set; }
+        [BsonRequired()]
+        [BsonElement("valorPremio")]
+        public double ValorPremio { get; set; }
     }
 }
