@@ -21,14 +21,14 @@ namespace Service.Services
         {
             var teste = await _repo.GetLastAsync();
             var repository = _repositoryFactory.FactoryRepository(loteria);
-            return await repository.GetAsync();
+            return (IEnumerable<T>)await repository.GetAsync();
         }
 
         public async Task<T> GetLastAsync(eLoteria loteria)
         {
             var teste = await _repo.GetLastAsync();
             var repository = _repositoryFactory.FactoryRepository(loteria);
-            return await repository.GetLastAsync();
+            return (T)await repository.GetLastAsync();
         }
     }
 }

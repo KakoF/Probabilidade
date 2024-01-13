@@ -12,12 +12,13 @@ namespace Infrastructure.Repository
         {
             _repository = repository;
         }
-        public virtual async Task<IEnumerable<T>> GetAsync()
+
+        public async virtual Task<IEnumerable<LoteriaDocument>> GetAsync()
         {
             return await _repository.FindAllAsync();
         }
 
-        public virtual async Task<T> GetLastAsync()
+        public async virtual Task<LoteriaDocument> GetLastAsync()
         {
             return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<T>.Sort.Descending(c => c.Concurso));
         }
