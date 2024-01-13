@@ -3,7 +3,7 @@ using Domain.Interfaces.Repository;
 
 namespace Infrastructure.Repository
 {
-    public class DuplaSenaRepository : LoteriaRepository<DuplaSenaDocument>, IDuplaSenaRepository<DuplaSenaDocument>
+    public class DuplaSenaRepository : LoteriaRepository<DuplaSenaDocument>, ILoteriaRepository<DuplaSenaDocument>, IDuplaSenaRepository
     {
         public DuplaSenaRepository(IMongoRepository<DuplaSenaDocument> repository) : base(repository)
         {

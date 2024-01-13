@@ -1,7 +1,7 @@
 ﻿using Domain.Documents;
 namespace Domain.Interfaces.Repository
 {
-    public interface IDuplaSenaRepository<TDocument> : ILoteriaRepository<DuplaSenaDocument>
+    public interface IDuplaSenaRepository : ILoteriaRepository<DuplaSenaDocument>
     {
     }
 }

@@ -12,15 +12,15 @@ namespace Infrastructure
         public static void ConfigureInfraStructure(this IServiceCollection services)
         {
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
-            services.AddScoped<IDuplaSenaRepository<DuplaSenaDocument>, DuplaSenaRepository>();
-            services.AddScoped<IFederalRepository<FederalDocument>, FederalRepository>();
-            services.AddScoped<ILotoFacilRepository<LotoFacilDocument>, LotoFacilRepository>();
-            services.AddScoped<ILotoManiaRepository<LotoManiaDocument>, LotoManiaRepository>();
-            services.AddScoped<IMaisMilionariaRepository<MaisMilionariaDocument>, MaisMilionariaRepository>();
-            services.AddScoped<IMegaSenaRepository<MegaSenaDocument>, MegaSenaRepository>();
-            services.AddScoped<IQuinaRepository<QuinaDocument>, QuinaRepository>();
-            services.AddScoped<ISuperSeteRepository<SuperSeteDocument>, SuperSeteRepository>();
-            services.AddScoped<ITimeManiaRepository<TimeManiaDocument>, TimeManiaRepository>();
+            services.AddScoped<ILoteriaRepository<DuplaSenaDocument>, DuplaSenaRepository>();
+            services.AddScoped<ILoteriaRepository<FederalDocument>, FederalRepository>();
+            services.AddScoped<ILoteriaRepository<LotoFacilDocument>, LotoFacilRepository>();
+            services.AddScoped<ILoteriaRepository<LotoManiaDocument>, LotoManiaRepository>();
+            services.AddScoped<ILoteriaRepository<MaisMilionariaDocument>, MaisMilionariaRepository>();
+            services.AddScoped<ILoteriaRepository<MegaSenaDocument>, MegaSenaRepository>();
+            services.AddScoped<ILoteriaRepository<QuinaDocument>, QuinaRepository>();
+            services.AddScoped<ILoteriaRepository<SuperSeteDocument>, SuperSeteRepository>();
+            services.AddScoped<ILoteriaRepository<TimeManiaDocument>, TimeManiaRepository>();
             services.AddScoped(typeof(ILoteriaRepositoryFactory<LoteriaDocument>), typeof(LoteriaRepositoryFactory<LoteriaDocument>));
         }
     }

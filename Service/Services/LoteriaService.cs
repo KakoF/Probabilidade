@@ -5,21 +5,22 @@ using Domain.Interfaces.Services;
 
 namespace Service.Services
 {
-    public class LoteriaService : ILoteriaService
+    public class LoteriaService<T> : ILoteriaService<T> where T : LoteriaDocument
     {
-        private readonly ILoteriaRepositoryFactory<LoteriaDocument> _repositoryFactory;
+        private readonly ILoteriaRepositoryFactory<T> _repositoryFactory;
 
-        public LoteriaService(ILoteriaRepositoryFactory<LoteriaDocument> repositoryFactory)
+        public LoteriaService(ILoteriaRepositoryFactory<T> repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
-        public async Task<IEnumerable<LoteriaDocument>> GetAsync(eLoteria loteria)
+        public async Task<IEnumerable<T>> GetAsync(eLoteria loteria)
         {
             var repository = _repositoryFactory.CreateCommand(loteria);
             return await repository.GetAsync();
         }
-        public async Task<LoteriaDocument> GetLastAsync(eLoteria loteria)
+
+        public async Task<T> GetLastAsync(eLoteria loteria)
         {
             var repository = _repositoryFactory.CreateCommand(loteria);
             return await repository.GetLastAsync();

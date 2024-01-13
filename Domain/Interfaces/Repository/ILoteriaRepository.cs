@@ -2,10 +2,10 @@
 
 namespace Domain.Interfaces.Repository
 {
-    public interface ILoteriaRepository<TDocument> where TDocument : LoteriaDocument
+    public interface ILoteriaRepository<T> where T : LoteriaDocument
     {
-        Task<IEnumerable<TDocument>> GetAsync();
-        Task<TDocument> GetLastAsync();
+        Task<IEnumerable<T>> GetAsync();
+        Task<T> GetLastAsync();
 
     }
 }

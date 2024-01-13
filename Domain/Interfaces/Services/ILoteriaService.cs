@@ -3,9 +3,9 @@ using Domain.Enums;
 
 namespace Domain.Interfaces.Services
 {
-    public interface ILoteriaService
+    public interface ILoteriaService<T> where T : LoteriaDocument
     {
-        Task<IEnumerable<LoteriaDocument>> GetAsync(eLoteria loteria);
-        Task<LoteriaDocument> GetLastAsync(eLoteria loteria);
+        Task<IEnumerable<T>> GetAsync(eLoteria loteria);
+        Task<T> GetLastAsync(eLoteria loteria);
     }
 }

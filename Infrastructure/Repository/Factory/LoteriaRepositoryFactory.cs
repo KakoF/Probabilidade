@@ -19,23 +19,23 @@ namespace Infrastructure.Repository.Factory
             switch (loteria)
             {
                 case eLoteria.DuplaSena:
-                    return new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as IDuplaSenaRepository);
                 case eLoteria.Federal:
-                    return new FederalRepository(new MongoRepository<FederalDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new FederalRepository(new MongoRepository<FederalDocument>(_settings)) as IFederalRepository);
                 case eLoteria.LotoFacil:
-                    return new LotoFacilRepository(new MongoRepository<LotoFacilDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new LotoFacilRepository(new MongoRepository<LotoFacilDocument>(_settings)) as ILotoFacilRepository);
                 case eLoteria.LotoMania:
-                    return new LotoManiaRepository(new MongoRepository<LotoManiaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new LotoManiaRepository(new MongoRepository<LotoManiaDocument>(_settings)) as ILotoManiaRepository);
                 case eLoteria.MaisMilionaria:
-                    return new MaisMilionariaRepository(new MongoRepository<MaisMilionariaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new MaisMilionariaRepository(new MongoRepository<MaisMilionariaDocument>(_settings)) as IMaisMilionariaRepository);
                 case eLoteria.MegaSena:
-                    return new MegaSenaRepository(new MongoRepository<MegaSenaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new MegaSenaRepository(new MongoRepository<MegaSenaDocument>(_settings)) as IMegaSenaRepository);
                 case eLoteria.Quina:
-                    return new QuinaRepository(new MongoRepository<QuinaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new QuinaRepository(new MongoRepository<QuinaDocument>(_settings)) as IQuinaRepository);
                 case eLoteria.SuperSete:
-                    return new SuperSeteRepository(new MongoRepository<SuperSeteDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new SuperSeteRepository(new MongoRepository<SuperSeteDocument>(_settings)) as ISuperSeteRepository);
                 case eLoteria.TimeMania:
-                    return new TimeManiaRepository(new MongoRepository<TimeManiaDocument>(_settings)) as ILoteriaRepository<T>;
+                    return (ILoteriaRepository<T>)(new TimeManiaRepository(new MongoRepository<TimeManiaDocument>(_settings)) as ITimeManiaRepository);
                 default:
                     throw new InvalidOperationException("Tipo de loteria inválida");
             }

@@ -4,22 +4,22 @@ using MongoDB.Driver;
 
 namespace Infrastructure.Repository
 {
-    public abstract class LoteriaRepository<TDocument> : ILoteriaRepository<TDocument> where TDocument : LoteriaDocument
+    public abstract class LoteriaRepository<T> : ILoteriaRepository<T> where T : LoteriaDocument
     {
-        private IMongoRepository<TDocument> _repository;
+        private IMongoRepository<T> _repository;
 
-        public LoteriaRepository(IMongoRepository<TDocument> repository)
+        public LoteriaRepository(IMongoRepository<T> repository)
         {
             _repository = repository;
         }
-        public virtual async Task<IEnumerable<TDocument>> GetAsync()
+        public virtual async Task<IEnumerable<T>> GetAsync()
         {
             return await _repository.FindAllAsync();
         }
 
-        public virtual async Task<TDocument> GetLastAsync()
+        public virtual async Task<T> GetLastAsync()
         {
-            return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<TDocument>.Sort.Descending(c => c.Concurso));
+            return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<T>.Sort.Descending(c => c.Concurso));
         }
     }
 }

@@ -10,9 +10,9 @@ namespace API.Controllers
     [Route("[controller]")]
     public class LoteriaController : ControllerBase
     {
-        private readonly ILoteriaService _service;
+        private readonly ILoteriaService<LoteriaDocument> _service;
 
-        public LoteriaController(ILoteriaService service)
+        public LoteriaController(ILoteriaService<LoteriaDocument> service)
         {
             _service = service;
         }
