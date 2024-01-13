@@ -23,6 +23,7 @@ namespace Infrastructure
             services.AddScoped<ILoteriaRepository<TimeManiaDocument>, TimeManiaRepository>();*/
 
 
+            services.AddScoped<IDiaDeSorteRepository, DiaDeSorteRepository>();
             services.AddScoped<IDuplaSenaRepository, DuplaSenaRepository>();
             services.AddScoped<IFederalRepository, FederalRepository>();
             services.AddScoped<ILotoFacilRepository, LotoFacilRepository>();

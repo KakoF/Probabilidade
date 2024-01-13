@@ -6,6 +6,9 @@ namespace Domain.Documents
     public abstract class LoteriaDocument : Document
     {
         [BsonRequired()]
+        [BsonElement("loteria")]
+        public string Loteria { get; private set; }
+        [BsonRequired()]
         [BsonElement("concurso")]
         public int Concurso { get; private set; }
         [BsonRequired()]
@@ -24,8 +27,9 @@ namespace Domain.Documents
         [BsonElement("trevos")]
         public IEnumerable<string> Trevos { get; private set; }
 
-        public LoteriaDocument(int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos)
+        public LoteriaDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos)
         {
+            Loteria = loteria;
             Concurso = concurso;
             Data = data;
             Local = local;

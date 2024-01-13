@@ -18,6 +18,8 @@ namespace Infrastructure.Repository.Factory
         {
             switch (loteria)
             {
+                case eLoteria.DiaDeSorte:
+                    return (TInterface)(new DiaDeSorteRepository(new MongoRepository<DiaDeSorteDocument>(_settings)) as ILoteriaRepository<T>);
                 case eLoteria.DuplaSena:
                     return (TInterface)(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as ILoteriaRepository<T>);
                 case eLoteria.Federal:

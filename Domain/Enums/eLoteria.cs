@@ -2,6 +2,7 @@
 {
     public enum eLoteria
     {
+        DiaDeSorte, 
         DuplaSena, 
         Federal,
         LotoFacil,
