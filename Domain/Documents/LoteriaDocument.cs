@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Documents
 {
-    public class LoteriaDocument : Document
+    public abstract class LoteriaDocument : Document
     {
         [BsonRequired()]
         [BsonElement("concurso")]

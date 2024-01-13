@@ -33,7 +33,7 @@ namespace Infrastructure
             services.AddScoped<ISuperSeteRepository, SuperSeteRepository>();
             services.AddScoped<ITimeManiaRepository, TimeManiaRepository>();
 
-            services.AddScoped(typeof(ILoteriaRepositoryFactory<LoteriaDocument>), typeof(LoteriaRepositoryFactory<LoteriaDocument>));
+            services.AddScoped(typeof(ILoteriaRepositoryFactory<LoteriaDocument, ILoteriaRepository<LoteriaDocument>>), typeof(LoteriaRepositoryFactory<LoteriaDocument, ILoteriaRepository<LoteriaDocument>>));
         }
     }
 }
