@@ -15,16 +15,16 @@ namespace Service.Services
             _serviceFactory = serviceFactory;
         }
 
-        public async Task<IEnumerable<O>> GetAsync(eLoteria loteria)
+        public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
         {
             var service = _serviceFactory.FactoryService(loteria);
-            return (IEnumerable<O>)await service.GetAsync();
+            return await service.GetAsync();
         }
 
-        public async Task<O> GetLastAsync(eLoteria loteria)
+        public async Task<LoteriaAbstract> GetLastAsync(eLoteria loteria)
         {
             var service = _serviceFactory.FactoryService(loteria);
-            return (O)await service.GetLastAsync();
+            return await service.GetLastAsync();
         }
     }
 }

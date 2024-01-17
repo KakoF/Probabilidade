@@ -4,9 +4,9 @@ using Domain.Models.Abstracts;
 
 namespace Domain.Interfaces.Services
 {
-    public interface ILoteriaModelService<T> where T : LoteriaAbstract
+    public interface ILoteriaModelService<out T> where T : LoteriaAbstract
     {
-        Task<IEnumerable<T>> GetAsync(eLoteria loteria);
-        Task<T> GetLastAsync(eLoteria loteria);
+        Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria);
+        Task<LoteriaAbstract> GetLastAsync(eLoteria loteria);
     }
 }

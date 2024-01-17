@@ -4,13 +4,13 @@ namespace Domain.Models.Abstracts
 {
     public abstract class LoteriaAbstract
     {
-        protected abstract string Nome { get; }
-        protected int Concurso { get; }
-        protected string Data { get; }
-        protected string Local { get; }
-        protected IEnumerable<string> DezenasOrdemSorteio { get; }
-        protected IEnumerable<string> Dezenas { get; }
-        protected IEnumerable<string> Trevos { get; }
+        public abstract string Nome { get; }
+        public int Concurso { get; }
+        public string Data { get; }
+        public string Local { get; }
+        public IEnumerable<string> DezenasOrdemSorteio { get; }
+        public IEnumerable<string> Dezenas { get; }
+        public IEnumerable<string> Trevos { get; }
 
         protected LoteriaAbstract(int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos)
         {
