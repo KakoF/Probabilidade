@@ -1,4 +1,5 @@
 ﻿using Domain.Documents.BaseDocument;
+using Domain.Models.Abstracts;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Documents
@@ -44,6 +45,10 @@ namespace Domain.Documents
             Trevos = trevos;
             Premiacoes = premiacoes;
         }
+
+        public abstract LoteriaAbstract ToModel();
+
+
     }
 
 

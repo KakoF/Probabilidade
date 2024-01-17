@@ -1,4 +1,6 @@
-﻿namespace Domain.Models.Abstracts
+﻿using Domain.Documents;
+
+namespace Domain.Models.Abstracts
 {
     public abstract class LoteriaAbstract
     {
@@ -19,5 +21,6 @@
             Dezenas = dezenas;
             Trevos = trevos;
         }
+
     }
 }

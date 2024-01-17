@@ -1,30 +1,31 @@
 ﻿using Domain.Documents;
-using Domain.Enums;
-using Domain.Interfaces.Factory;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Services;
+using Domain.Models.Abstracts;
+using MongoDB.Driver;
 
 namespace Service.Services
 {
-    public class LoteriaService<T> : ILoteriaService<T> where T : LoteriaDocument
+    public abstract class LoteriaService<T> : ILoteriaService<T> where T : LoteriaAbstract 
     {
-        private readonly ILoteriaRepositoryFactory<T, ILoteriaRepository<T>> _repositoryFactory;
-
-        public LoteriaService(ILoteriaRepositoryFactory<T, ILoteriaRepository<T>> repositoryFactory)
+        private readonly ILoteriaRepository<LoteriaDocument> _repository;
+        public LoteriaService(ILoteriaRepository<LoteriaDocument> repository)
         {
-            _repositoryFactory = repositoryFactory;
+            _repository = repository;
+        }
+        
+        public async Task<IEnumerable<LoteriaAbstract>> GetAsync()
+        {
+            var document = await _repository.GetAsync();
+            var models = document.Select(x => x.ToModel());
+            return models;
         }
 
-        public async Task<IEnumerable<T>> GetAsync(eLoteria loteria)
+        public async Task<LoteriaAbstract> GetLastAsync()
         {
-            var repository = _repositoryFactory.FactoryRepository(loteria);
-            return (IEnumerable<T>)await repository.GetAsync();
-        }
-
-        public async Task<T> GetLastAsync(eLoteria loteria)
-        {
-            var repository = _repositoryFactory.FactoryRepository(loteria);
-            return (T)await repository.GetLastAsync();
+            var document = await _repository.GetLastAsync();
+            return document.ToModel();
         }
     }
+
 }

@@ -1,11 +1,13 @@
 ﻿using Domain.Documents;
-using Domain.Enums;
+using Domain.Models.Abstracts;
+
 
 namespace Domain.Interfaces.Services
 {
-    public interface ILoteriaService<T> where T : LoteriaDocument
+    public interface ILoteriaService<out T> where T : LoteriaAbstract
     {
-        Task<IEnumerable<T>> GetAsync(eLoteria loteria);
-        Task<T> GetLastAsync(eLoteria loteria);
+        Task<IEnumerable<LoteriaAbstract>> GetAsync();
+        Task<LoteriaAbstract> GetLastAsync();
+
     }
 }

@@ -12,17 +12,6 @@ namespace Infrastructure
         public static void ConfigureInfraStructure(this IServiceCollection services)
         {
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
-            /*services.AddScoped<ILoteriaRepository<DuplaSenaDocument>, DuplaSenaRepository>();
-            services.AddScoped<ILoteriaRepository<FederalDocument>, FederalRepository>();
-            services.AddScoped<ILoteriaRepository<LotoFacilDocument>, LotoFacilRepository>();
-            services.AddScoped<ILoteriaRepository<LotoManiaDocument>, LotoManiaRepository>();
-            services.AddScoped<ILoteriaRepository<MaisMilionariaDocument>, MaisMilionariaRepository>();
-            services.AddScoped<ILoteriaRepository<MegaSenaDocument>, MegaSenaRepository>();
-            services.AddScoped<ILoteriaRepository<QuinaDocument>, QuinaRepository>();
-            services.AddScoped<ILoteriaRepository<SuperSeteDocument>, SuperSeteRepository>();
-            services.AddScoped<ILoteriaRepository<TimeManiaDocument>, TimeManiaRepository>();*/
-
-
             services.AddScoped<IDiaDeSorteRepository, DiaDeSorteRepository>();
             services.AddScoped<IDuplaSenaRepository, DuplaSenaRepository>();
             services.AddScoped<IFederalRepository, FederalRepository>();

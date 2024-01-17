@@ -1,4 +1,5 @@
-﻿using Domain.Models.Abstracts;
+﻿using Domain.Documents;
+using Domain.Models.Abstracts;
 
 namespace Domain.Models
 {
@@ -9,5 +10,8 @@ namespace Domain.Models
         {
         }
 
+        public DiaDeSorteModel(LoteriaDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
+        {
+        }
     }
 }
