@@ -6,6 +6,7 @@ using Domain.Models.Abstracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Services;
+using Service.Services.Factory;
 
 namespace Service
 {
@@ -13,10 +14,8 @@ namespace Service
     {
         public static void ConfigureService(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>), typeof(LoteriaService<LoteriaAbstract>));
-            //services.AddScoped<ILoteriaService<LoteriaAbstract>, LoteriaService<LoteriaAbstract>>();
+            services.AddScoped(typeof(ILoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>), typeof(LoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>));
             services.AddScoped(typeof(ILoteriaModelService<LoteriaAbstract>), typeof(LoteriaModelService<LoteriaDocument, LoteriaAbstract>));
-            services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>), typeof(LoteriaService<LoteriaAbstract>));
             //services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>));
             //services.AddScoped<ILoteriaService<LoteriaAbstract>, LoteriaService<LoteriaAbstract>>();
             services.AddScoped<IDiaDeSorteService, DiaDeSorteService>();
