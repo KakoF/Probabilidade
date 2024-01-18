@@ -3,6 +3,7 @@ using Domain.Enums;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Services;
 using Domain.Models.Abstracts;
+using Domain.Records;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -30,6 +31,13 @@ namespace API.Controllers
         public async Task<LoteriaAbstract> GetLastAsync(eLoteria loteria)
         {
             return await _service.GetLastAsync(loteria);
+        }
+
+        [HttpGet]
+        [Route("Estimativa/{loteria}")]
+        public async Task<Estimativa> EstimativaAsync(eLoteria loteria)
+        {
+            return await _service.GerarEstivaAsync(loteria);
         }
     }
 }

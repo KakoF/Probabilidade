@@ -1,6 +1,7 @@
 ﻿using Domain.Documents;
 using Domain.Enums;
 using Domain.Models.Abstracts;
+using Domain.Records;
 
 namespace Domain.Interfaces.Services
 {
@@ -8,5 +9,6 @@ namespace Domain.Interfaces.Services
     {
         Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria);
         Task<LoteriaAbstract> GetLastAsync(eLoteria loteria);
+        Task<Estimativa> GerarEstivaAsync(eLoteria loteria);
     }
 }

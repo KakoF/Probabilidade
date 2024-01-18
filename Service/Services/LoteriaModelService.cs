@@ -3,6 +3,7 @@ using Domain.Enums;
 using Domain.Interfaces.Factory;
 using Domain.Interfaces.Services;
 using Domain.Models.Abstracts;
+using Domain.Records;
 
 namespace Service.Services
 {
@@ -13,6 +14,14 @@ namespace Service.Services
         public LoteriaModelService(ILoteriaServiceFactory<O, ILoteriaService<O>> serviceFactory)
         {
             _serviceFactory = serviceFactory;
+        }
+
+        public async Task<Estimativa> GerarEstivaAsync(eLoteria loteria)
+        {
+            var list = await GetAsync(loteria);
+            return new Estimativa(list);
+
+
         }
 
         public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
