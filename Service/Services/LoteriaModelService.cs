@@ -35,5 +35,12 @@ namespace Service.Services
             var service = _serviceFactory.FactoryService(loteria);
             return await service.GetLastAsync();
         }
+
+        public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        {
+            var service = _serviceFactory.FactoryService(loteria);
+            var list = await service.FilterByNumeroAsync(numero);
+            return new LinhaTempo(numero, list);
+        }
     }
 }

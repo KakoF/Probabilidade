@@ -8,6 +8,7 @@ namespace Domain.Interfaces.Services
     {
         Task<IEnumerable<LoteriaAbstract>> GetAsync();
         Task<LoteriaAbstract> GetLastAsync();
+        Task<IEnumerable<LoteriaAbstract>> FilterByNumeroAsync(int numero);
 
     }
 }

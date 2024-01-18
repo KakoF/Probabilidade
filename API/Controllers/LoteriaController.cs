@@ -39,5 +39,12 @@ namespace API.Controllers
         {
             return await _service.GerarEstivaAsync(loteria);
         }
+
+        [HttpGet]
+        [Route("LinhaTempo/{loteria}/{numero}")]
+        public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        {
+            return await _service.LinhaTempoAsync(loteria, numero);
+        }
     }
 }

@@ -25,6 +25,13 @@ namespace Service.Services
             var document = await _repository.GetLastAsync();
             return document.ToModel();
         }
+
+        public async Task<IEnumerable<LoteriaAbstract>> FilterByNumeroAsync(int numero)
+        {
+            var document = await _repository.FilterByNumeroAsync(numero);
+            var models = document.Select(x => x.ToModel());
+            return models;
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Documents;
 using Domain.Interfaces.Repository;
 using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repository
 {
@@ -21,6 +22,11 @@ namespace Infrastructure.Repository
         public async virtual Task<LoteriaDocument> GetLastAsync()
         {
             return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<T>.Sort.Descending(c => c.Concurso));
+        }
+
+        public async virtual Task<IEnumerable<LoteriaDocument>> FilterByNumeroAsync(int numero)
+        {
+            return await _repository.FilterByAsync(filterExpression: x => x.Dezenas.Any(x => x.Equals(numero.ToString().PadLeft(2, '0'))));
         }
     }
 }

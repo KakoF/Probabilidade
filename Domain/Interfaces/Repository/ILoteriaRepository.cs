@@ -1,4 +1,5 @@
 ﻿using Domain.Documents;
+using System.Linq.Expressions;
 
 namespace Domain.Interfaces.Repository
 {
@@ -6,6 +7,7 @@ namespace Domain.Interfaces.Repository
     {
         Task<IEnumerable<LoteriaDocument>> GetAsync();
         Task<LoteriaDocument> GetLastAsync();
+        Task<IEnumerable<LoteriaDocument>> FilterByNumeroAsync(int numero);
 
     }
 }
