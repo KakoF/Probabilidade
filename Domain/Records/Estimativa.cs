@@ -20,13 +20,11 @@ namespace Domain.Records
         {
             TotalSorteios = loterias.Select(x => x.Dezenas).Count();
             var numeros = loterias.Select(x => x.Dezenas).AsEnumerable().SelectMany(s => s).Distinct();
-            foreach (var item in numeros)
+            for (int i = Convert.ToInt16(numeros.Min()); i <= Convert.ToInt16(numeros.Max()); i++)
             {
-                var aparicoes = loterias.Count(f => f.Dezenas.Any(x => x.Equals(item)));
-                Probabilidade.Add(new Probabilidade(Convert.ToInt32(item), aparicoes, ((decimal)aparicoes / (decimal)TotalSorteios) * 100));
+                var aparicoes = loterias.Count(f => f.Dezenas.Any(x => Convert.ToInt32(x).Equals(i)));
+                Probabilidade.Add(new Probabilidade(Convert.ToInt32(i), aparicoes, ((decimal)aparicoes / (decimal)TotalSorteios) * 100));
             }
-
-            Probabilidade = Probabilidade.OrderBy(x => x.numero).ToList();
         }
     }
     public record Probabilidade(int numero, int totalSorteios, decimal porcentagem);

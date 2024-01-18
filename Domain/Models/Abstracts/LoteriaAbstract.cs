@@ -4,6 +4,7 @@ namespace Domain.Models.Abstracts
 {
     public abstract class LoteriaAbstract
     {
+        public abstract Tuple<int, int> RangeNumeros { get; }
         public abstract string Nome { get; }
         public int Concurso { get; }
         public string Data { get; }

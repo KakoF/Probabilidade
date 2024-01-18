@@ -6,6 +6,7 @@ namespace Domain.Models
     public class SuperSeteModel : LoteriaAbstract
     {
         public override string Nome => "Super Sete";
+        public override Tuple<int, int> RangeNumeros => new Tuple<int, int>(1, 60);
         public SuperSeteModel(int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos) : base(concurso, data, local, dezenasOrdemSorteio, dezenas, trevos)
         {
         }
