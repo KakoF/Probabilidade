@@ -7,6 +7,7 @@ namespace Service.Services
 {
     public class FederalService : LoteriaService<FederalModel, FederalDocument> , IFederalService
     {
+        protected override int PadLeftZeros => 6;
         public FederalService(IFederalRepository repository) : base(repository)
         {
         }
