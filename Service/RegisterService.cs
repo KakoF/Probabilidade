@@ -16,8 +16,7 @@ namespace Service
         {
             services.AddScoped(typeof(ILoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>), typeof(LoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>));
             services.AddScoped(typeof(ILoteriaModelService<LoteriaAbstract>), typeof(LoteriaModelService<LoteriaDocument, LoteriaAbstract>));
-            //services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>));
-            //services.AddScoped<ILoteriaService<LoteriaAbstract>, LoteriaService<LoteriaAbstract>>();
+            services.AddScoped(typeof(ILoteriasExecuteCommand<LoteriaAbstract>), typeof(LoteriasExecuteCommand<LoteriaAbstract>));
             services.AddScoped<IDiaDeSorteService, DiaDeSorteService>();
             services.AddScoped<IFederalService, FederalService>();
             services.AddScoped<ILotoFacilService, LotoFacilService>();
@@ -28,13 +27,6 @@ namespace Service
             services.AddScoped<ISuperSeteService, SuperSeteService>();
             services.AddScoped<ITimeManiaService, TimeManiaService>();
 
-            //services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>), typeof(LoteriaService<LoteriaAbstract>));
-            //services.AddScoped<ILoteriaService<LoteriaAbstract>, LoteriaService<LoteriaAbstract>>();
-            //services.AddScoped<ILoteriaService, LoteriaService>();
-            //services.AddScoped(typeof(ILoteriaService<LoteriaAbstract>), typeof(LoteriaService<LoteriaAbstract>));
-
-            //services.AddScoped(typeof(ILoteriaModelService<LoteriaAbstract>), typeof(LoteriaModelService<LoteriaDocument, LoteriaAbstract>));
-            
         }
     }
 }

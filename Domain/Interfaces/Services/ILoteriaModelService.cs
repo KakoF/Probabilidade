@@ -11,5 +11,6 @@ namespace Domain.Interfaces.Services
         Task<LoteriaAbstract> GetLastAsync(eLoteria loteria);
         Task<Estimativa> GerarEstivaAsync(eLoteria loteria);
         Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero);
+        Task<IEnumerable<LinhaTempo>> LinhaTempoAsync(int numero);
     }
 }

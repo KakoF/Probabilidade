@@ -41,6 +41,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Route("LinhaTempo/{numero}")]
+        public async Task<IEnumerable<LinhaTempo>> EstimativaAsync(int numero)
+        {
+            return await _service.LinhaTempoAsync(numero);
+        }
+
+        [HttpGet]
         [Route("LinhaTempo/{loteria}/{numero}")]
         public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
         {
