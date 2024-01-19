@@ -5,7 +5,7 @@ using Domain.Models;
 
 namespace Service.Services
 {
-    public class QuinaService : LoteriaService<QuinaModel>, IQuinaService
+    public class QuinaService : LoteriaService<QuinaModel, QuinaDocument>, IQuinaService
     {
         public QuinaService(IQuinaRepository repository) : base(repository)
         {

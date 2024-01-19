@@ -5,7 +5,7 @@ using Domain.Models;
 
 namespace Service.Services
 {
-    public class DiaDeSorteService : LoteriaService<DiaDeSorteModel>, IDiaDeSorteService
+    public class DiaDeSorteService : LoteriaService<DiaDeSorteModel, DiaDeSorteDocument>, IDiaDeSorteService
     {
         public DiaDeSorteService(IDiaDeSorteRepository repository) : base(repository)
         {

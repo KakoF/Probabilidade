@@ -5,7 +5,7 @@ using Domain.Models;
 
 namespace Service.Services
 {
-    public class FederalService : LoteriaService<FederalModel> , IFederalService
+    public class FederalService : LoteriaService<FederalModel, FederalDocument> , IFederalService
     {
         public FederalService(IFederalRepository repository) : base(repository)
         {

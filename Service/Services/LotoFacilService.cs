@@ -5,7 +5,7 @@ using Domain.Models;
 
 namespace Service.Services
 {
-    public class LotoFacilService : LoteriaService<LotoFacilModel>, ILotoFacilService
+    public class LotoFacilService : LoteriaService<LotoFacilModel, LotoFacilDocument>, ILotoFacilService
     {
         public LotoFacilService(ILotoFacilRepository repository) : base(repository)
         {

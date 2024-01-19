@@ -3,11 +3,11 @@ using System.Linq.Expressions;
 
 namespace Domain.Interfaces.Repository
 {
-    public interface ILoteriaRepository<out T> where T : LoteriaDocument
+    public interface ILoteriaRepository<T> where T : LoteriaDocument
     {
-        Task<IEnumerable<LoteriaDocument>> GetAsync();
-        Task<LoteriaDocument> GetLastAsync();
-        Task<IEnumerable<LoteriaDocument>> FilterByNumeroAsync(int numero);
+        Task<IEnumerable<T>> GetAsync();
+        Task<T> GetLastAsync();
+        Task<IEnumerable<T>> FilterByAsync(Expression<Func<T, bool>> expresion);
 
     }
 }
