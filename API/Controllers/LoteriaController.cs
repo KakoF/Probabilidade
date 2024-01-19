@@ -23,7 +23,7 @@ namespace API.Controllers
         [Route("{loteria}")]
         public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
         {
-           return await _service.GetAsync(loteria);
+            return await _service.GetAsync(loteria);
         }
 
         [HttpGet]
@@ -34,24 +34,39 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("Estimativa/{loteria}")]
+        [Route("Estimativa/Porcentagem/{loteria}")]
         public async Task<Estimativa> EstimativaAsync(eLoteria loteria)
         {
             return await _service.GerarEstivaAsync(loteria);
         }
 
         [HttpGet]
-        [Route("LinhaTempo/{numero}")]
+        [Route("Estimativa/Porcentagem/{loteria}/{numero}")]
+        public async Task<Estimativa> EstimativaNumeroAsync(eLoteria loteria, int numero)
+        {
+            return await _service.GerarEstivaAsync(loteria, numero);
+        }
+
+        [HttpGet]
+        [Route("Linha/Tempo/{numero}")]
         public async Task<IEnumerable<LinhaTempo>> EstimativaAsync(int numero)
         {
             return await _service.LinhaTempoAsync(numero);
         }
 
         [HttpGet]
-        [Route("LinhaTempo/{loteria}/{numero}")]
+        [Route("Linha/Tempo/{loteria}/{numero}")]
         public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
         {
             return await _service.LinhaTempoAsync(loteria, numero);
+        }
+
+
+        [HttpPost]
+        [Route("Analise/Jogo/{loteria}")]
+        public async Task<IEnumerable<Analise>> AnaliseJogoAsync(eLoteria loteria, [FromBody] IEnumerable<int> numeros)
+        {
+            return await _service.AnaliseJogoAsync(loteria, numeros);
         }
     }
 }

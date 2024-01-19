@@ -19,10 +19,12 @@ namespace Domain.Records
 
         private void CalcularEstimativa(IEnumerable<LoteriaAbstract> loterias)
         {
+            if (loterias == null || !loterias.Any())
+                return;
             Sorteio = loterias.FirstOrDefault().Nome;
             TotalSorteios = loterias.Select(x => x.Dezenas).Count();
             var numeros = loterias.Select(x => x.Dezenas).AsEnumerable().SelectMany(s => s).Distinct();
-            for (int i = Convert.ToInt16(numeros.Min()); i <= Convert.ToInt16(numeros.Max()); i++)
+            for (int i = Convert.ToInt32(numeros.Min()); i <= Convert.ToInt64(numeros.Max()); i++)
             {
                 var aparicoes = loterias.Count(f => f.Dezenas.Any(x => Convert.ToInt32(x).Equals(i)));
                 Probabilidade.Add(new Probabilidade(Convert.ToInt32(i), aparicoes, ((decimal)aparicoes / (decimal)TotalSorteios) * 100));

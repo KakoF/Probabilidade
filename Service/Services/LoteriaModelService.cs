@@ -36,7 +36,15 @@ namespace Service.Services
             var list = await GetAsync(loteria);
             return new Estimativa(list);
         }
-      
+
+        public async Task<Estimativa> GerarEstivaAsync(eLoteria loteria, int numero)
+        {
+            var service = _serviceFactory.FactoryService(loteria);
+            var list = await service.FilterByNumeroAsync(numero);
+            return new Estimativa(list);
+        }
+
+
         public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
         {
             var service = _serviceFactory.FactoryService(loteria);
@@ -54,5 +62,17 @@ namespace Service.Services
             return list;
         }
 
+        public async Task<IEnumerable<Analise>> AnaliseJogoAsync(eLoteria loteria, IEnumerable<int> numeros)
+        {
+            var list = new List<Analise>();
+            foreach (var numero in numeros)
+            {
+                var sorteios = await GetAsync(loteria);
+                var estimativa = await GerarEstivaAsync(loteria, numero);
+                var linhaTempo = await LinhaTempoAsync(loteria, numero);
+                list.Add(new Analise(numero, sorteios.Count(), estimativa.TotalSorteios, linhaTempo, ((decimal)estimativa.TotalSorteios / (decimal)sorteios.Count()) * 100));
+            }
+            return list;
+        }
     }
 }
