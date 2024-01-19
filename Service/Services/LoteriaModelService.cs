@@ -20,8 +20,6 @@ namespace Service.Services
         {
             var list = await GetAsync(loteria);
             return new Estimativa(list);
-
-
         }
 
         public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
