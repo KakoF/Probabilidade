@@ -2,20 +2,20 @@
 
 namespace Domain.Records
 {
-    public class LinhaTempo
+    public class LinhaDoTempo
     {
-        public string Sorteio { get; private set; }
+        public string Loteria { get; private set; }
         public int Numero { get; private set; }
 
         public IList<DateTime> Datas { get; private set; }
 
 
-        public LinhaTempo(int numero, IEnumerable<LoteriaAbstract> loterias)
+        public LinhaDoTempo(int numero, IEnumerable<LoteriaAbstract> loterias)
         {
             Numero = numero;
             if (loterias == null || !loterias.Any())
                 return;
-            Sorteio = loterias.FirstOrDefault().Nome;
+            Loteria = loterias.FirstOrDefault().Nome;
             Datas = new List<DateTime>();
             foreach (var l in loterias)
                 Datas.Add(Convert.ToDateTime(l.Data));

@@ -31,25 +31,25 @@ namespace Service.Services
             return await service.GetLastAsync();
         }
 
-        public async Task<Estimativa> GerarEstivaAsync(eLoteria loteria)
+        public async Task<ProbabilidadeExperimental> GerarEstivaAsync(eLoteria loteria)
         {
             var list = await GetAsync(loteria);
-            return new Estimativa(list);
+            return new ProbabilidadeExperimental(list);
         }
       
-        public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)
         {
             var service = _serviceFactory.FactoryService(loteria);
             var list = await service.FilterByNumeroAsync(numero);
-            return new LinhaTempo(numero, list);
+            return new LinhaDoTempo(numero, list);
         }
 
-        public async Task<IEnumerable<LinhaTempo>> LinhaTempoAsync(int numero)
+        public async Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int numero)
         {
-            var list = new List<LinhaTempo>();
+            var list = new List<LinhaDoTempo>();
             await foreach (var item in _servicesCommand.Execute(numero))
             {
-                list.Add(new LinhaTempo(numero, item));
+                list.Add(new LinhaDoTempo(numero, item));
             }
             return list;
         }

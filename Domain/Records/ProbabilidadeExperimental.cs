@@ -1,16 +1,14 @@
-﻿using Domain.Enums;
-using Domain.Models.Abstracts;
-using System.Collections.Generic;
+﻿using Domain.Models.Abstracts;
 
 namespace Domain.Records
 {
-    public class Estimativa
+    public class ProbabilidadeExperimental
     {
-        public string Sorteio { get; private set; }
+        public string Loteria { get; private set; }
         public int TotalSorteios { get; private set; }
         public IList<Probabilidade> Probabilidade { get; private set; }
 
-        public Estimativa(IEnumerable<LoteriaAbstract> list)
+        public ProbabilidadeExperimental(IEnumerable<LoteriaAbstract> list)
         {
             
             Probabilidade = new List<Probabilidade>();
@@ -19,7 +17,7 @@ namespace Domain.Records
 
         private void CalcularEstimativa(IEnumerable<LoteriaAbstract> loterias)
         {
-            Sorteio = loterias.FirstOrDefault().Nome;
+            Loteria = loterias.FirstOrDefault().Nome;
             TotalSorteios = loterias.Select(x => x.Dezenas).Count();
             var numeros = loterias.Select(x => x.Dezenas).AsEnumerable().SelectMany(s => s).Distinct();
             for (int i = Convert.ToInt16(numeros.Min()); i <= Convert.ToInt16(numeros.Max()); i++)

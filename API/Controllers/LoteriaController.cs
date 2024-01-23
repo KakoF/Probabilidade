@@ -34,22 +34,22 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("Estimativa/{loteria}")]
-        public async Task<Estimativa> EstimativaAsync(eLoteria loteria)
+        [Route("ProbabilidadeExperimental/{loteria}")]
+        public async Task<ProbabilidadeExperimental> EstimativaAsync(eLoteria loteria)
         {
             return await _service.GerarEstivaAsync(loteria);
         }
 
         [HttpGet]
-        [Route("LinhaTempo/{numero}")]
-        public async Task<IEnumerable<LinhaTempo>> EstimativaAsync(int numero)
+        [Route("LinhaDoTempo/{numero}")]
+        public async Task<IEnumerable<LinhaDoTempo>> EstimativaAsync(int numero)
         {
             return await _service.LinhaTempoAsync(numero);
         }
 
         [HttpGet]
-        [Route("LinhaTempo/{loteria}/{numero}")]
-        public async Task<LinhaTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        [Route("LinhaDoTempo/{loteria}/{numero}")]
+        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)
         {
             return await _service.LinhaTempoAsync(loteria, numero);
         }
