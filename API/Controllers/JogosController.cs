@@ -14,7 +14,7 @@ namespace API.Controllers
 			return Enum.GetValues(typeof(eLoteria))
 	            .Cast<eLoteria>()
 	            .Select(v => v.ToString())
-	            .ToList(); ;
+	            .ToList();
         }
     }
 }
