@@ -7,7 +7,7 @@ namespace Domain.Interfaces.Services
     public interface ISorteioService<out T> where T : SorteioAbstract
     {
         Task<IEnumerable<SorteioAbstract>> GetAsync();
-        Task<SorteioAbstract> GetLastAsync();
+        Task<IEnumerable<SorteioAbstract>> GetLastAsync(int? ultimos = 1);
         Task<IEnumerable<SorteioAbstract>> FilterByNumeroAsync(int numero);
 
     }

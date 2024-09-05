@@ -25,10 +25,10 @@ namespace Service.Services
             return await service.GetAsync();
         }
 
-        public async Task<SorteioAbstract> GetLastAsync(eLoteria loteria)
+        public async Task<IEnumerable<SorteioAbstract>> GetLastAsync(eLoteria loteria, int? ultimos = 1)
         {
             var service = _serviceFactory.FactoryService(loteria);
-            return await service.GetLastAsync();
+            return await service.GetLastAsync(ultimos);
         }
 
         public async Task<ProbabilidadeExperimental> GerarEstivaAsync(eLoteria loteria)

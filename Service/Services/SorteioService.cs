@@ -22,11 +22,12 @@ namespace Service.Services
             return models;
         }
 
-        public async Task<SorteioAbstract> GetLastAsync()
+        public async Task<IEnumerable<SorteioAbstract>> GetLastAsync(int? ultimos = 1)
         {
-            var document = await _repository.GetLastAsync();
-            return document.ToModel();
-        }
+            var document = await _repository.GetLastAsync(ultimos);
+			var models = document.Select(x => x.ToModel());
+			return models;
+		}
 
         public async Task<IEnumerable<SorteioAbstract>> FilterByNumeroAsync(int numero)
         {

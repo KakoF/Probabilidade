@@ -19,9 +19,10 @@ namespace Infrastructure.Repository
             return await _repository.FindAllAsync();
         }
 
-        public async virtual Task<T> GetLastAsync()
+        public async virtual Task<IEnumerable<T>> GetLastAsync(int? ultimos = 1)
         {
-            return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<T>.Sort.Descending(c => c.Concurso));
+            //return await _repository.FindOneAsync(filterExpression: x => x.Id.ToString() != null, sorterExpression: Builders<T>.Sort.Descending(c => c.Concurso));
+            return await _repository.FindAllAsync(filterExpression: x => x.Id.ToString() != null, Builders<T>.Sort.Descending(c => c.Concurso), ultimos);
         }
 
         public async virtual Task<IEnumerable<T>> FilterByAsync(Expression<Func<T, bool>> expresion)

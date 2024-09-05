@@ -27,10 +27,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("{loteria}/ultima")]
-        public async Task<SorteioAbstract> GetLastAsync(eLoteria loteria)
+        [Route("{loteria}/ultimos")]
+        public async Task<IEnumerable<SorteioAbstract>> GetLastAsync(eLoteria loteria, [FromHeader] int ultimos = 3)
         {
-            return await _service.GetLastAsync(loteria);
+            return await _service.GetLastAsync(loteria, ultimos);
         }
 
         [HttpGet]
