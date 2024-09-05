@@ -6,10 +6,10 @@ using Infrastructure.Configs.MongoConfigs;
 
 namespace Infrastructure.Repository.Factory
 {
-    public class LoteriaRepositoryFactory<T, TInterface> : ILoteriaRepositoryFactory<T, TInterface> where T : LoteriaDocument where TInterface : ILoteriaRepository<T>
+    public class SorteioRepositoryFactory<T, TInterface> : ISorteioRepositoryFactory<T, TInterface> where T : SorteioDocument where TInterface : ISorteioRepository<T>
     {
         private readonly MongoDbSettings _settings;
-        public LoteriaRepositoryFactory(MongoDbSettings settings)
+        public SorteioRepositoryFactory(MongoDbSettings settings)
         {
             _settings = settings;
         }
@@ -19,9 +19,9 @@ namespace Infrastructure.Repository.Factory
             switch (loteria)
             {
                 case eLoteria.DiaDeSorte:
-                    return (TInterface)(new DiaDeSorteRepository(new MongoRepository<DiaDeSorteDocument>(_settings)) as ILoteriaRepository<T>);
+                    return (TInterface)(new DiaDeSorteRepository(new MongoRepository<DiaDeSorteDocument>(_settings)) as ISorteioRepository<T>);
                 case eLoteria.DuplaSena:
-                    return (TInterface)(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as ILoteriaRepository<T>);
+                    return (TInterface)(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings)) as ISorteioRepository<T>);
                 case eLoteria.Federal:
                     return (TInterface)(new FederalRepository(new MongoRepository<FederalDocument>(_settings)) as IFederalRepository);
                 case eLoteria.LotoFacil:

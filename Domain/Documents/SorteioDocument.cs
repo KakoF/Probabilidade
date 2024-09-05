@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Documents
 {
-    public abstract class LoteriaDocument : Document
+    public abstract class SorteioDocument : Document
     {
         [BsonRequired()]
         [BsonElement("loteria")]
@@ -34,7 +34,7 @@ namespace Domain.Documents
 
 
 
-        public LoteriaDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos, IEnumerable<Premiacao> premiacoes)
+        public SorteioDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos, IEnumerable<Premiacao> premiacoes)
         {
             Loteria = loteria;
             Concurso = concurso;
@@ -46,7 +46,7 @@ namespace Domain.Documents
             Premiacoes = premiacoes;
         }
 
-        public abstract LoteriaAbstract ToModel();
+        public abstract SorteioAbstract ToModel();
 
 
     }

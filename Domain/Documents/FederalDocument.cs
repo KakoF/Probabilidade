@@ -7,13 +7,13 @@ namespace Domain.Documents
 {
     [BsonCollection("Federal")]
     [BsonIgnoreExtraElements]
-    public class FederalDocument : LoteriaDocument
+    public class FederalDocument : SorteioDocument
     {
         public FederalDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos, IEnumerable<Premiacao> premiacoes) : base(loteria, concurso, data, local, dezenasOrdemSorteio, dezenas, trevos, premiacoes)
         {
         }
 
-        public override LoteriaAbstract ToModel()
+        public override SorteioAbstract ToModel()
         {
             return new FederalModel(this);
         }

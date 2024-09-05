@@ -1,10 +1,7 @@
-using Domain.Documents;
 using Domain.Enums;
-using Domain.Interfaces.Repository;
-using Domain.Interfaces.Services;
-using Domain.Models.Abstracts;
 using Domain.Records;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace API.Controllers
 {
@@ -12,46 +9,14 @@ namespace API.Controllers
     [Route("[controller]")]
     public class LoteriaController : ControllerBase
     {
-        private readonly ILoteriaModelService<LoteriaAbstract> _service;
-
-        public LoteriaController(ILoteriaModelService<LoteriaAbstract> service)
-        {
-            _service = service;
-        }
 
         [HttpGet]
-        [Route("{loteria}")]
-        public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
+        public IEnumerable<Loteria> Get()
         {
-           return await _service.GetAsync(loteria);
-        }
-
-        [HttpGet]
-        [Route("{loteria}/ultima")]
-        public async Task<LoteriaAbstract> GetLastAsync(eLoteria loteria)
-        {
-            return await _service.GetLastAsync(loteria);
-        }
-
-        [HttpGet]
-        [Route("ProbabilidadeExperimental/{loteria}")]
-        public async Task<ProbabilidadeExperimental> EstimativaAsync(eLoteria loteria)
-        {
-            return await _service.GerarEstivaAsync(loteria);
-        }
-
-        [HttpGet]
-        [Route("LinhaDoTempo/{numero}")]
-        public async Task<IEnumerable<LinhaDoTempo>> EstimativaAsync(int numero)
-        {
-            return await _service.LinhaTempoAsync(numero);
-        }
-
-        [HttpGet]
-        [Route("LinhaDoTempo/{loteria}/{numero}")]
-        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)
-        {
-            return await _service.LinhaTempoAsync(loteria, numero);
+			return Enum.GetValues(typeof(eLoteria))
+	            .Cast<eLoteria>()
+	            .Select(v => new Loteria(v.ToString(), Regex.Replace(v.ToString(), "(\\B[A-Z])", " $1")))
+	            .ToList();
         }
     }
 }

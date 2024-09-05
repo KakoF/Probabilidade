@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repository
 {
-    public abstract class LoteriaRepository<T> : ILoteriaRepository<T> where T : LoteriaDocument
+    public abstract class SorteioRepository<T> : ISorteioRepository<T> where T : SorteioDocument
     {
         private IMongoRepository<T> _repository;
 
-        public LoteriaRepository(IMongoRepository<T> repository)
+        public SorteioRepository(IMongoRepository<T> repository)
         {
             _repository = repository;
         }

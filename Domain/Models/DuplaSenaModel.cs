@@ -3,7 +3,7 @@ using Domain.Models.Abstracts;
 
 namespace Domain.Models
 {
-    public class DuplaSenaModel : LoteriaAbstract
+    public class DuplaSenaModel : SorteioAbstract
     {
         public override string Nome => "Dupla Sena";
         public override Tuple<int, int> RangeNumeros => new Tuple<int, int>(1, 60);
@@ -11,7 +11,7 @@ namespace Domain.Models
         {
         }
 
-        public DuplaSenaModel(LoteriaDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
+        public DuplaSenaModel(SorteioDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
         {
         }
     }

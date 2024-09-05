@@ -4,7 +4,7 @@ using Domain.Models;
 
 namespace Domain.Interfaces.Services
 {
-    public interface ILotoFacilService : ILoteriaService<LotoFacilModel>
+    public interface ILotoFacilService : ISorteioService<LotoFacilModel>
     {
        
     }

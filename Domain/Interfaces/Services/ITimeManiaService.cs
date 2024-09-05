@@ -4,7 +4,7 @@ using Domain.Models;
 
 namespace Domain.Interfaces.Services
 {
-    public interface ITimeManiaService : ILoteriaService<TimeManiaModel>
+    public interface ITimeManiaService : ISorteioService<TimeManiaModel>
     {
        
     }

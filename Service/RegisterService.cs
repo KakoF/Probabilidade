@@ -14,9 +14,9 @@ namespace Service
     {
         public static void ConfigureService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped(typeof(ILoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>), typeof(LoteriaServiceFactory<LoteriaAbstract, ILoteriaService<LoteriaAbstract>>));
-            services.AddScoped(typeof(ILoteriaModelService<LoteriaAbstract>), typeof(LoteriaModelService<LoteriaDocument, LoteriaAbstract>));
-            services.AddScoped(typeof(ILoteriasExecuteCommand<LoteriaAbstract>), typeof(LoteriasExecuteCommand<LoteriaAbstract>));
+            services.AddScoped(typeof(ISorteioServiceFactory<SorteioAbstract, ISorteioService<SorteioAbstract>>), typeof(LoteriaServiceFactory<SorteioAbstract, ISorteioService<SorteioAbstract>>));
+            services.AddScoped(typeof(ISorteioModelService<SorteioAbstract>), typeof(SorteioModelService<SorteioDocument, SorteioAbstract>));
+            services.AddScoped(typeof(ILoteriasExecuteCommand<SorteioAbstract>), typeof(SorteioExecuteCommand<SorteioAbstract>));
             services.AddScoped<IDiaDeSorteService, DiaDeSorteService>();
             services.AddScoped<IFederalService, FederalService>();
             services.AddScoped<ILotoFacilService, LotoFacilService>();

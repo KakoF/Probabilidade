@@ -8,24 +8,24 @@ using System.Collections.Generic;
 
 namespace Service.Services
 {
-    public class LoteriaModelService<T, O> : ILoteriaModelService<O> where T : LoteriaDocument where O : LoteriaAbstract
+    public class SorteioModelService<T, O> : ISorteioModelService<O> where T : SorteioDocument where O : SorteioAbstract
     {
-        private readonly ILoteriaServiceFactory<O, ILoteriaService<O>> _serviceFactory;
+        private readonly ISorteioServiceFactory<O, ISorteioService<O>> _serviceFactory;
         private readonly ILoteriasExecuteCommand<O> _servicesCommand;
 
-        public LoteriaModelService(ILoteriaServiceFactory<O, ILoteriaService<O>> serviceFactory, ILoteriasExecuteCommand<O> servicesCommand)
+        public SorteioModelService(ISorteioServiceFactory<O, ISorteioService<O>> serviceFactory, ILoteriasExecuteCommand<O> servicesCommand)
         {
             _serviceFactory = serviceFactory;
             _servicesCommand = servicesCommand;
         }
 
-        public async Task<IEnumerable<LoteriaAbstract>> GetAsync(eLoteria loteria)
+        public async Task<IEnumerable<SorteioAbstract>> GetAsync(eLoteria loteria)
         {
             var service = _serviceFactory.FactoryService(loteria);
             return await service.GetAsync();
         }
 
-        public async Task<LoteriaAbstract> GetLastAsync(eLoteria loteria)
+        public async Task<SorteioAbstract> GetLastAsync(eLoteria loteria)
         {
             var service = _serviceFactory.FactoryService(loteria);
             return await service.GetLastAsync();

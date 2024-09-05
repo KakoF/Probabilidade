@@ -3,7 +3,7 @@ using Domain.Models.Abstracts;
 
 namespace Domain.Models
 {
-    public class DiaDeSorteModel : LoteriaAbstract
+    public class DiaDeSorteModel : SorteioAbstract
     {
         public override string Nome => "Dia De Sorte";
 
@@ -13,7 +13,7 @@ namespace Domain.Models
         {
         }
 
-        public DiaDeSorteModel(LoteriaDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
+        public DiaDeSorteModel(SorteioDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
         {
         }
     }

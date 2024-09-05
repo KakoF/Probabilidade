@@ -5,12 +5,12 @@ using Domain.Models.Abstracts;
 
 namespace Service.Services
 {
-    public class LoteriasExecuteCommand<T> : ILoteriasExecuteCommand<T> where T : LoteriaAbstract
+    public class SorteioExecuteCommand<T> : ILoteriasExecuteCommand<T> where T : SorteioAbstract
     {
        
-        private readonly ILoteriaServiceFactory<T, ILoteriaService<T>> _serviceFactory;
+        private readonly ISorteioServiceFactory<T, ISorteioService<T>> _serviceFactory;
 
-        public LoteriasExecuteCommand(ILoteriaServiceFactory<T, ILoteriaService<T>> serviceFactory)
+        public SorteioExecuteCommand(ISorteioServiceFactory<T, ISorteioService<T>> serviceFactory)
         {
 
             _serviceFactory = serviceFactory;
