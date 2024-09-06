@@ -34,8 +34,8 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("ProbabilidadeExperimental/{loteria}")]
-        public async Task<ProbabilidadeExperimental> EstimativaAsync(eLoteria loteria)
+        [Route("ProbabilidadeCalculada/{loteria}")]
+        public async Task<ProbabilidadeCalculada> EstimativaAsync(eLoteria loteria)
         {
             return await _service.GerarEstivaAsync(loteria);
         }

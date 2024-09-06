@@ -31,10 +31,10 @@ namespace Service.Services
             return await service.GetLastAsync(ultimos);
         }
 
-        public async Task<ProbabilidadeExperimental> GerarEstivaAsync(eLoteria loteria)
+        public async Task<ProbabilidadeCalculada> GerarEstivaAsync(eLoteria loteria)
         {
             var list = await GetAsync(loteria);
-            return new ProbabilidadeExperimental(list);
+            return new ProbabilidadeCalculada(list);
         }
       
         public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)

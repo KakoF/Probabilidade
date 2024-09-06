@@ -2,20 +2,20 @@
 
 namespace Domain.Records
 {
-    public class ProbabilidadeExperimental
+    public class ProbabilidadeCalculada
     {
         public string Sorteio { get; private set; }
         public int TotalSorteios { get; private set; }
         public IList<Probabilidade> Probabilidade { get; private set; }
 
-        public ProbabilidadeExperimental(IEnumerable<SorteioAbstract> list)
+        public ProbabilidadeCalculada(IEnumerable<SorteioAbstract> list)
         {
             
             Probabilidade = new List<Probabilidade>();
-            CalcularEstimativa(list);
+            CalcularProbabilidade(list);
         }
 
-        private void CalcularEstimativa(IEnumerable<SorteioAbstract> sorteios)
+        private void CalcularProbabilidade(IEnumerable<SorteioAbstract> sorteios)
         {
 			Sorteio = sorteios.FirstOrDefault().Nome;
             TotalSorteios = sorteios.Select(x => x.Dezenas).Count();
@@ -27,6 +27,4 @@ namespace Domain.Records
             }
         }
     }
-    public record Probabilidade(int numero, int totalSorteios, decimal porcentagem);
-
 }
