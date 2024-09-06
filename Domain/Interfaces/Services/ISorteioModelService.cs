@@ -10,7 +10,7 @@ namespace Domain.Interfaces.Services
         Task<IEnumerable<SorteioAbstract>> GetAsync(eLoteria loteria);
         Task<IEnumerable<SorteioAbstract>> GetLastAsync(eLoteria loteria, int? ultimos = 1);
         Task<ProbabilidadeCalculada> GerarEstivaAsync(eLoteria loteria);
-        Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero);
-        Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int numero);
+        Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int[] numeros);
+        Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int[] numeros);
     }
 }

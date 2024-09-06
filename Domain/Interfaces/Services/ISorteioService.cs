@@ -8,7 +8,8 @@ namespace Domain.Interfaces.Services
     {
         Task<IEnumerable<SorteioAbstract>> GetAsync();
         Task<IEnumerable<SorteioAbstract>> GetLastAsync(int? ultimos = 1);
-        Task<IEnumerable<SorteioAbstract>> FilterByNumeroAsync(int numero);
+        Task<IEnumerable<IEnumerable<SorteioAbstract>>> FilterByNumeroAsync(IEnumerable<int> numeros);
 
-    }
+
+	}
 }

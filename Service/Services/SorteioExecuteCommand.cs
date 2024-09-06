@@ -15,25 +15,14 @@ namespace Service.Services
 
             _serviceFactory = serviceFactory;
         }
-
-        /*public async IAsyncEnumerable<T> Execute(int numero)
+     
+        public async IAsyncEnumerable<IEnumerable<IEnumerable<T>>> Execute(IEnumerable<int> numeros)
         {
             var loterias = Enum.GetValues(typeof(eLoteria)).Cast<eLoteria>();
             foreach (var loteria in loterias)
             {
                 var service = _serviceFactory.FactoryService(loteria);
-                var teste = await service.FilterByNumeroAsync(numero);
-                yield return await service.FilterByNumeroAsync(numero);
-            }
-        }*/
-
-        public async IAsyncEnumerable<IEnumerable<T>> Execute(int numero)
-        {
-            var loterias = Enum.GetValues(typeof(eLoteria)).Cast<eLoteria>();
-            foreach (var loteria in loterias)
-            {
-                var service = _serviceFactory.FactoryService(loteria);
-                yield return (IEnumerable<T>)await service.FilterByNumeroAsync(numero);
+                yield return (IEnumerable<IEnumerable<T>>)await service.FilterByNumeroAsync(numeros);
             }
         }
     }

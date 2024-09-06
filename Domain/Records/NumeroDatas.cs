@@ -1,4 +1,8 @@
 ﻿namespace Domain.Records
 {
-	public record NumeroDatas(int Numero, IList<DateTime> Datas);
+	public class NumeroDatas
+	{
+		public int Numero { get; set; }
+		public IList<DateTime> Datas { get; init; } = new List<DateTime>();
+	}
 }

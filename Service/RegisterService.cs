@@ -1,6 +1,5 @@
 ﻿using Domain.Documents;
 using Domain.Interfaces.Factory;
-using Domain.Interfaces.Repository;
 using Domain.Interfaces.Services;
 using Domain.Models.Abstracts;
 using Microsoft.Extensions.Configuration;

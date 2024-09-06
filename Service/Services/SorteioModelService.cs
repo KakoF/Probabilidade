@@ -4,7 +4,6 @@ using Domain.Interfaces.Factory;
 using Domain.Interfaces.Services;
 using Domain.Models.Abstracts;
 using Domain.Records;
-using System.Collections.Generic;
 
 namespace Service.Services
 {
@@ -37,20 +36,23 @@ namespace Service.Services
             return new ProbabilidadeCalculada(list);
         }
       
-        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int[] numeros)
         {
-            var service = _serviceFactory.FactoryService(loteria);
-            var list = await service.FilterByNumeroAsync(numero);
-            return new LinhaDoTempo(numero, list);
+            var ordered = numeros.Distinct().OrderBy(numeros => numeros).ToList();
+
+			var service = _serviceFactory.FactoryService(loteria);
+            var list = await service.FilterByNumeroAsync(ordered);
+            return new LinhaDoTempo(ordered, list);
         }
 
-        public async Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int numero)
+        public async Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int[] numeros)
         {
-            var list = new List<LinhaDoTempo>();
-            await foreach (var item in _servicesCommand.Execute(numero))
-            {
-                list.Add(new LinhaDoTempo(numero, item));
-            }
+			var ordered = numeros.Distinct().OrderBy(numeros => numeros).ToList();
+
+			var list = new List<LinhaDoTempo>();
+            await foreach (var item in _servicesCommand.Execute(ordered))
+                list.Add(new LinhaDoTempo(ordered, item));
+            
             return list;
         }
 

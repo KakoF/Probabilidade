@@ -1,6 +1,4 @@
-using Domain.Documents;
 using Domain.Enums;
-using Domain.Interfaces.Repository;
 using Domain.Interfaces.Services;
 using Domain.Models.Abstracts;
 using Domain.Records;
@@ -40,18 +38,18 @@ namespace API.Controllers
             return await _service.GerarEstivaAsync(loteria);
         }
 
-        [HttpGet]
-        [Route("LinhaDoTempo/{numero}")]
-        public async Task<IEnumerable<LinhaDoTempo>> EstimativaAsync(int numero)
+        [HttpPost]
+        [Route("LinhaDoTempo")]
+        public async Task<IEnumerable<LinhaDoTempo>> EstimativaAsync([FromBody] int[] numeros)
         {
-            return await _service.LinhaTempoAsync(numero);
+            return await _service.LinhaTempoAsync(numeros);
         }
 
-        [HttpGet]
-        [Route("LinhaDoTempo/{loteria}/{numero}")]
-        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int numero)
+        [HttpPost]
+        [Route("LinhaDoTempo/{loteria}")]
+        public async Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, [FromBody] int[] numeros)
         {
-            return await _service.LinhaTempoAsync(loteria, numero);
+            return await _service.LinhaTempoAsync(loteria, numeros);
         }
     }
 }

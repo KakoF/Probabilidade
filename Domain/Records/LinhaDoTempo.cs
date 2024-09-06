@@ -2,27 +2,26 @@
 
 namespace Domain.Records
 {
-    public class LinhaDoTempo
-    {
-        public string Sorteio { get; private set; }
-        public int Numero { get; private set; }
+	public class LinhaDoTempo
+	{
+		public string Sorteio { get; private set; }
+		public List<NumeroDatas> Numeros { get; init; } = new List<NumeroDatas>();
 
-        public IList<DateTime> Datas { get; private set; }
+		public LinhaDoTempo(List<int> numeros, IEnumerable<IEnumerable<SorteioAbstract>> sorteios)
+		{
+			if (sorteios == null || !sorteios.Any())
+				return;
 
+			Sorteio = sorteios?.FirstOrDefault()?.FirstOrDefault()?.Nome;
+			foreach (var sorteio in sorteios.Select((value, i) => new { i, value }))
+			{
+				var NumeroData = new NumeroDatas();
+				NumeroData.Numero = numeros[sorteio.i];
+				foreach (var item in sorteio.value)
+					NumeroData.Datas.Add(Convert.ToDateTime(item.Data));
 
-        public LinhaDoTempo(int numero, IEnumerable<SorteioAbstract> sorteios)
-        {
-            Numero = numero;
-            if (sorteios == null || !sorteios.Any())
-                return;
-            Sorteio = sorteios.FirstOrDefault().Nome;
-            Datas = new List<DateTime>();
-            foreach (var sorteio in sorteios)
-                Datas.Add(Convert.ToDateTime(sorteio.Data));
-
-            Datas = Datas.OrderBy(l => l.Date).ToList();
-
-
-        }
-    }
+				Numeros.Add(NumeroData);
+			}
+		}
+	}
 }
