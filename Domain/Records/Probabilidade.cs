@@ -1,5 +1,5 @@
 ﻿
 namespace Domain.Records
 {
-	public record Probabilidade(int numero, int totalSorteios, decimal porcentagem);
+	public record Probabilidade(int Numero, int TotalSorteios, decimal Porcentagem);
 }
