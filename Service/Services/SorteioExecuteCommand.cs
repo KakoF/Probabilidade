@@ -16,13 +16,13 @@ namespace Service.Services
             _serviceFactory = serviceFactory;
         }
      
-        public async IAsyncEnumerable<IEnumerable<IEnumerable<T>>> Execute(IEnumerable<int> numeros)
+        public async IAsyncEnumerable<IEnumerable<IEnumerable<T>>> Execute(IEnumerable<int> numeros, DateTime dataInicio)
         {
             var loterias = Enum.GetValues(typeof(eLoteria)).Cast<eLoteria>();
             foreach (var loteria in loterias)
             {
                 var service = _serviceFactory.FactoryService(loteria);
-                yield return (IEnumerable<IEnumerable<T>>)await service.FilterByNumeroAsync(numeros);
+                yield return (IEnumerable<IEnumerable<T>>)await service.FilterByNumeroAsync(numeros, dataInicio);
             }
         }
     }

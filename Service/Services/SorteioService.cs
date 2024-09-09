@@ -29,13 +29,14 @@ namespace Service.Services
 			return models;
 		}
 
-        public async Task<IEnumerable<IEnumerable<SorteioAbstract>>> FilterByNumeroAsync(IEnumerable<int> numeros)
+        public async Task<IEnumerable<IEnumerable<SorteioAbstract>>> FilterByNumeroAsync(IEnumerable<int> numeros, DateTime dataInicio)
         {
             var result = new List<IEnumerable<SorteioAbstract>>();
 
             foreach (var numero in numeros)
             {
 				var document = await _repository.FilterByAsync(x => x.Dezenas.Any(x => x.Equals(numero.ToString().PadLeft(PadLeftZeros, '0'))));
+                document = document.Where(x => Convert.ToDateTime(x.Data).Year >= dataInicio.Year);
 				result.Add(document.Select(x => x.ToModel()));
 			}
             return result;

@@ -2,6 +2,7 @@
 using Domain.Enums;
 using Domain.Models.Abstracts;
 using Domain.Records;
+using Domain.Records.Requests;
 
 namespace Domain.Interfaces.Services
 {
@@ -10,7 +11,7 @@ namespace Domain.Interfaces.Services
         Task<IEnumerable<SorteioAbstract>> GetAsync(eLoteria loteria);
         Task<IEnumerable<SorteioAbstract>> GetLastAsync(eLoteria loteria, int? ultimos = 1);
         Task<ProbabilidadeCalculada> GerarEstivaAsync(eLoteria loteria);
-        Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, int[] numeros);
-        Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(int[] numeros);
+        Task<LinhaDoTempo> LinhaTempoAsync(eLoteria loteria, LinhaTempoRequest request);
+        Task<IEnumerable<LinhaDoTempo>> LinhaTempoAsync(LinhaTempoRequest request);
     }
 }
