@@ -23,3 +23,42 @@ services:
     build: ./seeders
     depends_on:
       - mongodb
+  
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    #network_mode: host
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 9090:9090
+    networks:
+      - probabilidade-network
+  
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    hostname: grafana
+    environment:
+      -  GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - probabilidade-network
+      
+volumes:
+  prometheus_data: {}
+networks:
+  probabilidade-network:
+    driver: bridge
+
