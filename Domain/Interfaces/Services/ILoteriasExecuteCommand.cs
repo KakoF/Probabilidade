@@ -2,8 +2,9 @@
 
 namespace Domain.Interfaces.Services
 {
-    public interface ILoteriasExecuteCommand<T> where T : LoteriaAbstract
+    public interface ILoteriasExecuteCommand<T> where T : SorteioAbstract
     {
-        IAsyncEnumerable<IEnumerable<T>> Execute(int numero);
-    }
+		IAsyncEnumerable<IEnumerable<IEnumerable<T>>> Execute(IEnumerable<int> numeros, DateTime dataInicio);
+
+	}
 }

@@ -8,7 +8,10 @@ namespace Domain.Interfaces.Repository
     {
         Task<IEnumerable<TDocument>> FindAllAsync();
 
-        Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<IEnumerable<TDocument>> FindAllAsync(Expression<Func<TDocument, bool>> filterExpression, SortDefinition<TDocument> sorterExpression = null, int? limit = 1);
+
+
+		Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression);
 
         Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression,  SortDefinition<TDocument> sorterExpression = null);
 

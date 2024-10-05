@@ -4,7 +4,7 @@ using Domain.Models;
 
 namespace Domain.Interfaces.Services
 {
-    public interface IQuinaService : ILoteriaService<QuinaModel>
+    public interface IQuinaService : ISorteioService<QuinaModel>
     {
        
     }

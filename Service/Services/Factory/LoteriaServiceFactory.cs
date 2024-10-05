@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services.Factory
 {
-    internal class LoteriaServiceFactory<T, TInterface> : ILoteriaServiceFactory<T, TInterface> where T : LoteriaAbstract where TInterface : ILoteriaService<T>
+    internal class LoteriaServiceFactory<T, TInterface> : ISorteioServiceFactory<T, TInterface> where T : SorteioAbstract where TInterface : ISorteioService<T>
     {
 
         private readonly MongoDbSettings _settings;
@@ -29,25 +29,25 @@ namespace Service.Services.Factory
             switch (loteria)
             {
                 case eLoteria.DiaDeSorte:
-                    return (TInterface)(new DiaDeSorteService(new DiaDeSorteRepository(new MongoRepository<DiaDeSorteDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new DiaDeSorteService(new DiaDeSorteRepository(new MongoRepository<DiaDeSorteDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.DuplaSena:
-                    return (TInterface)(new DuplaSenaService(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new DuplaSenaService(new DuplaSenaRepository(new MongoRepository<DuplaSenaDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.Federal:
-                    return (TInterface)(new FederalService(new FederalRepository(new MongoRepository<FederalDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new FederalService(new FederalRepository(new MongoRepository<FederalDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.LotoFacil:
-                    return (TInterface)(new LotoFacilService(new LotoFacilRepository(new MongoRepository<LotoFacilDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new LotoFacilService(new LotoFacilRepository(new MongoRepository<LotoFacilDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.LotoMania:
-                    return (TInterface)(new LotoManiaService(new LotoManiaRepository(new MongoRepository<LotoManiaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new LotoManiaService(new LotoManiaRepository(new MongoRepository<LotoManiaDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.MaisMilionaria:
-                    return (TInterface)(new MaisMilionariaService(new MaisMilionariaRepository(new MongoRepository<MaisMilionariaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new MaisMilionariaService(new MaisMilionariaRepository(new MongoRepository<MaisMilionariaDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.MegaSena:
-                    return (TInterface)(new MegaSenaService(new MegaSenaRepository(new MongoRepository<MegaSenaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new MegaSenaService(new MegaSenaRepository(new MongoRepository<MegaSenaDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.Quina:
-                    return (TInterface)(new QuinaService(new QuinaRepository(new MongoRepository<QuinaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new QuinaService(new QuinaRepository(new MongoRepository<QuinaDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.SuperSete:
-                    return (TInterface)(new SuperSeteService(new SuperSeteRepository(new MongoRepository<SuperSeteDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new SuperSeteService(new SuperSeteRepository(new MongoRepository<SuperSeteDocument>(_settings))) as ISorteioService<T>);
                 case eLoteria.TimeMania:
-                    return (TInterface)(new TimeManiaService(new TimeManiaRepository(new MongoRepository<TimeManiaDocument>(_settings))) as ILoteriaService<T>);
+                    return (TInterface)(new TimeManiaService(new TimeManiaRepository(new MongoRepository<TimeManiaDocument>(_settings))) as ISorteioService<T>);
                 default:
                     throw new InvalidOperationException("Tipo de loteria inválida");
             }

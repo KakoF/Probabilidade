@@ -3,7 +3,7 @@ using Domain.Interfaces.Repository;
 
 namespace Infrastructure.Repository
 {
-    public class FederalRepository : LoteriaRepository<FederalDocument>, IFederalRepository
+    public class FederalRepository : SorteioRepository<FederalDocument>, IFederalRepository
     {
         public FederalRepository(IMongoRepository<FederalDocument> repository) : base(repository)
         {

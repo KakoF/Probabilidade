@@ -11,6 +11,15 @@ using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(cors =>
+{
+    cors.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers()
   .AddNewtonsoftJson(options => options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore)
   .AddJsonOptions(opt =>
@@ -41,8 +50,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+app.UseCors();
+//app.UseHttpsRedirection();
 
 /*INICIO DA CONFIGURA��O - PROMETHEUS*/
 // Custom Metrics to count requests for each endpoint and the method

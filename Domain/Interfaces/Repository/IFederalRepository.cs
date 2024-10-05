@@ -1,7 +1,7 @@
 ﻿using Domain.Documents;
 namespace Domain.Interfaces.Repository
 {
-    public interface IFederalRepository : ILoteriaRepository<FederalDocument>
+    public interface IFederalRepository : ISorteioRepository<FederalDocument>
     {
     }
 }

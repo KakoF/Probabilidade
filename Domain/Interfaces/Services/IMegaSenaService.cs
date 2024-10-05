@@ -4,7 +4,7 @@ using Domain.Models;
 
 namespace Domain.Interfaces.Services
 {
-    public interface IMegaSenaService : ILoteriaService<MegaSenaModel>
+    public interface IMegaSenaService : ISorteioService<MegaSenaModel>
     {
        
     }

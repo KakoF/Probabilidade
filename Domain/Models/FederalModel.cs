@@ -3,7 +3,7 @@ using Domain.Models.Abstracts;
 
 namespace Domain.Models
 {
-    public class FederalModel : LoteriaAbstract
+    public class FederalModel : SorteioAbstract
     {
         public override string Nome => "Federal";
         public override Tuple<int, int> RangeNumeros => new Tuple<int, int>(1, 60);
@@ -11,7 +11,7 @@ namespace Domain.Models
         {
         }
 
-        public FederalModel(LoteriaDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
+        public FederalModel(SorteioDocument document) : base(document.Concurso, document.Data, document.Local, document.DezenasOrdemSorteio, document.Dezenas, document.Trevos)
         {
         }
     }

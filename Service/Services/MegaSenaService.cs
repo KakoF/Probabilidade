@@ -5,7 +5,7 @@ using Domain.Models;
 
 namespace Service.Services
 {
-    public class MegaSenaService : LoteriaService<MegaSenaModel, MegaSenaDocument>, IMegaSenaService
+    public class MegaSenaService : SorteioService<MegaSenaModel, MegaSenaDocument>, IMegaSenaService
     {
         public MegaSenaService(IMegaSenaRepository repository) : base(repository)
         {

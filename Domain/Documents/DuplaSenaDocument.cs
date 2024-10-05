@@ -7,13 +7,13 @@ namespace Domain.Documents
 {
     [BsonCollection("DuplaSena")]
     [BsonIgnoreExtraElements]
-    public class DuplaSenaDocument : LoteriaDocument
+    public class DuplaSenaDocument : SorteioDocument
     {
         public DuplaSenaDocument(string loteria, int concurso, string data, string local, IEnumerable<string> dezenasOrdemSorteio, IEnumerable<string> dezenas, IEnumerable<string> trevos, IEnumerable<Premiacao> premiacoes) : base(loteria, concurso, data, local, dezenasOrdemSorteio, dezenas, trevos, premiacoes)
         {
         }
 
-        public override LoteriaAbstract ToModel()
+        public override SorteioAbstract ToModel()
         {
             return new DuplaSenaModel(this);
         }

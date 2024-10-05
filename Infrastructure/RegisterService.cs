@@ -23,7 +23,7 @@ namespace Infrastructure
             services.AddScoped<ISuperSeteRepository, SuperSeteRepository>();
             services.AddScoped<ITimeManiaRepository, TimeManiaRepository>();
 
-            services.AddScoped(typeof(ILoteriaRepositoryFactory<LoteriaDocument, ILoteriaRepository<LoteriaDocument>>), typeof(LoteriaRepositoryFactory<LoteriaDocument, ILoteriaRepository<LoteriaDocument>>));
+            services.AddScoped(typeof(ISorteioRepositoryFactory<SorteioDocument, ISorteioRepository<SorteioDocument>>), typeof(SorteioRepositoryFactory<SorteioDocument, ISorteioRepository<SorteioDocument>>));
         }
     }
 }

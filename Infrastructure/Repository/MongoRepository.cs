@@ -30,7 +30,14 @@ namespace Infrastructure.Repository
             return await _collection.AsQueryable().ToListAsync();
         }
 
-        public virtual async Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression)
+		public virtual async Task<IEnumerable<TDocument>> FindAllAsync(Expression<Func<TDocument, bool>> filterExpression, SortDefinition<TDocument> sorterExpression = null, int? limit = 1)
+		{
+			if (sorterExpression == null)
+				return await _collection.Find(filterExpression).Limit(limit).ToListAsync();
+			return await _collection.Find(filterExpression).Sort(sorterExpression).Limit(limit).ToListAsync();
+		}
+
+		public virtual async Task<IEnumerable<TDocument>> FilterByAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
             return await _collection.Find(filterExpression).ToListAsync();
         }
@@ -42,7 +49,9 @@ namespace Infrastructure.Repository
             return await _collection.Find(filterExpression).Sort(sorterExpression).FirstOrDefaultAsync();
         }
 
-        public virtual async Task<TDocument> FindByIdAsync(string id)
+	
+
+		public virtual async Task<TDocument> FindByIdAsync(string id)
         {
             var objectId = new ObjectId(id);
             var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, objectId);
