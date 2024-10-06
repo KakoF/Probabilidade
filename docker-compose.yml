@@ -1,7 +1,22 @@
 version: "3.8"
 services:
+  probabilidade.api:
+    container_name: probabilidade.api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    networks:
+      - probabilidadenetwork
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__ConnectionString = mongodb://loterias_admin:loterias_admin_1234@mongodb:27017/
+      #- MongoDbSettings:ConnectionString = mongodb://loterias_admin:loterias_admin_1234@mongodb:27017/
+      #- MongoDbSettings.ConnectionString = mongodb://loterias_admin:loterias_admin_1234@mongodb:27017/
+    ports:
+      - 8080:8080
   mongodb:
     image: mongo
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: loterias_admin
       MONGO_INITDB_ROOT_PASSWORD: loterias_admin_1234
@@ -10,6 +25,7 @@ services:
     command: mongod --bind_ip 0.0.0.0
 
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
     restart: always
     ports:
@@ -23,7 +39,7 @@ services:
     build: ./seeders
     depends_on:
       - mongodb
-  
+
   prometheus:
     image: prom/prometheus:latest
     user: root
@@ -42,23 +58,22 @@ services:
     ports:
       - 9090:9090
     networks:
-      - probabilidade-network
-  
+      - probabilidadenetwork
+
   grafana:
     image: grafana/grafana
     container_name: grafana
     hostname: grafana
     environment:
-      -  GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     restart: unless-stopped
     ports:
       - 3000:3000
     networks:
-      - probabilidade-network
-      
+      - probabilidadenetwork
+
 volumes:
   prometheus_data: {}
 networks:
-  probabilidade-network:
+  probabilidadenetwork:
     driver: bridge
-
