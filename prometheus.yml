@@ -1,5 +1,5 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 15s # Acao que define o tempo que o prometheus vai solicitar a informacao do servidor, vai fazer um pull no servidor de 15 em 15 segs pra coletar as metricas
   evaluation_interval: 15s
 
 scrape_configs:
