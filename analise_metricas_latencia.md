@@ -1,6 +1,28 @@
 
 # Análise de Métricas de Latência
 
+```
+http_request_duration_seconds_sum{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos"} 6173.494421699966
+http_request_duration_seconds_count{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos"} 40184
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.004"} 31
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.008"} 3199
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.016"} 6595
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.032"} 9075
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.064"} 12206
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.128"} 18229
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.256"} 37574
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="0.512"} 39011
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="1.024"} 39607
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="2.048"} 40127
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="4.096"} 40183
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="8.192"} 40184
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="16.384"} 40184
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="32.768"} 40184
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Sorteio",action="GetLast",endpoint="Sorteio/{loteria}/ultimos",le="+Inf"} 40184
+```
+
 ## 1. Endpoint: Loteria/Get
 
 ### Dados principais
