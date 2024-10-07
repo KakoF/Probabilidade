@@ -4,6 +4,7 @@ using Domain.Models.Abstracts;
 using Domain.Records;
 using Domain.Records.Requests;
 using Microsoft.AspNetCore.Mvc;
+using Prometheus;
 
 namespace API.Controllers
 {
@@ -11,7 +12,9 @@ namespace API.Controllers
     [Route("[controller]")]
     public class SorteioController : ControllerBase
     {
-        private readonly ISorteioModelService<SorteioAbstract> _service;
+		private static readonly Counter ultimosSorteios = Metrics.CreateCounter("ultimos_sorteios", "Contador personalizado de ultimas sorteios.");
+
+		private readonly ISorteioModelService<SorteioAbstract> _service;
 
         public SorteioController(ISorteioModelService<SorteioAbstract> service)
         {
@@ -29,7 +32,9 @@ namespace API.Controllers
         [Route("{loteria}/ultimos")]
         public async Task<IEnumerable<SorteioAbstract>> GetLastAsync(eLoteria loteria, [FromHeader] int ultimos = 3)
         {
-            return await _service.GetLastAsync(loteria, ultimos);
+			ultimosSorteios.Inc();
+
+			return await _service.GetLastAsync(loteria, ultimos);
         }
 
         [HttpGet]

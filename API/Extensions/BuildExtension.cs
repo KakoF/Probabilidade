@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Configs.MongoConfigs;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
-using OpenTelemetry.Metrics;
 
 namespace API.Extensions
 {
@@ -31,28 +31,22 @@ namespace API.Extensions
 			builder.Services.AddSwaggerGen();
 		}
 
-		/*public static void AddHealthChecks(this WebApplicationBuilder builder)
+		public static void AddHealthChecks(this WebApplicationBuilder builder)
 		{
-			builder.Services.AddHealthChecks()
-			 .AddMongoDb(builder.Configuration["MongoDbSettings:ConnectionString"], name: "Mongo Log")
-			 .ForwardToPrometheus();
-		}*/
 
-		public static void AddTelemetriPrometheus(this WebApplicationBuilder builder)
-		{
-			builder.Services.AddOpenTelemetry()
-			.WithMetrics(builder =>
-			{
-				builder.AddPrometheusExporter();
-				builder.AddMeter("Microsoft.AspNetCore.Hosting",
-					"Microsoft.AspNetCore.Server.Kestrel");
-				builder.AddView("http.server.request.duration",
-					new ExplicitBucketHistogramConfiguration
-					{
-						Boundaries = new double[] { 0, 0.005, 0.01, 0.025, 0.05,
-							  0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 }
-					});
-			});
+			builder.Services.AddHealthChecks()
+			.AddCheck("self", () => HealthCheckResult.Healthy())
+			
+			.AddProcessAllocatedMemoryHealthCheck(maximumMegabytesAllocated: 512 * 1024 * 1024, name: "process_memory") // 512MB
+			.AddPrivateMemoryHealthCheck(maximumMemoryBytes: 1024 * 1024 * 1024, name: "private_memory")// 1GB
+			.AddMongoDb(
+				mongodbConnectionString: builder.Configuration["MongoDbSettings:ConnectionString"], // String de conexão do MongoDB
+				name: "mongodb",
+				failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
+				tags: new string[] { "db", "mongodb" }
+			);
 		}
+
+		
 	}
 }
