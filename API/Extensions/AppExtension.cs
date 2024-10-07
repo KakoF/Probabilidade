@@ -1,5 +1,4 @@
 ﻿using API.Helpers.MetricsHelper;
-using Prometheus;
 
 namespace API.Extensions
 {
@@ -10,8 +9,11 @@ namespace API.Extensions
 			app.UseSwagger();
 			app.UseSwaggerUI();
 		}
-
 		public static void UsePrometheus(this WebApplication app)
+		{
+			app.MapPrometheusScrapingEndpoint();
+		}
+		/*public static void UsePrometheus(this WebApplication app)
 		{
 			app.UseHealthChecksPrometheusExporter("/metrics");
 			app.UseHttpMetrics();
@@ -19,6 +21,6 @@ namespace API.Extensions
 			//Helpers para metricas
 			var cpuMetrics = new CpuMetricsHelper();
 			var memoryMetrics = new MemoryMetricsHelper();
-		}
+		}*/
 	}
 }

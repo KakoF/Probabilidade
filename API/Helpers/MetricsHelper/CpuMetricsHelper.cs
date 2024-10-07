@@ -1,11 +1,9 @@
-﻿using Prometheus;
-using System.Diagnostics;
-
+﻿
 namespace API.Helpers.MetricsHelper
 {
 	public class CpuMetricsHelper
 	{
-		private static readonly Gauge cpuUsageGauge = Metrics.CreateGauge("cpu_usage_percentage", "Current CPU usage percentage.");
+		/*private static readonly Gauge cpuUsageGauge = Metrics.CreateGauge("cpu_usage_percentage", "Current CPU usage percentage.");
 
 		private Timer _timer;
 		private TimeSpan _lastTotalProcessorTime;
@@ -41,6 +39,6 @@ namespace API.Helpers.MetricsHelper
 		public void Dispose()
 		{
 			_timer?.Dispose();
-		}
+		}*/
 	}
 }

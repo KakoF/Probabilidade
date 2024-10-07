@@ -1,11 +1,9 @@
-﻿using Prometheus;
-using System.Diagnostics;
-
+﻿
 namespace API.Helpers.MetricsHelper
 {
 	public class MemoryMetricsHelper
 	{
-		private static readonly Gauge memoryWorkingSetGauge = Metrics.CreateGauge("memory_working_set_bytes", "Current memory usage in bytes (Working Set).");
+		/*private static readonly Gauge memoryWorkingSetGauge = Metrics.CreateGauge("memory_working_set_bytes", "Current memory usage in bytes (Working Set).");
 
 		// Cria um Gauge para capturar o uso de memória virtual
 		private static readonly Gauge memoryVirtualSetGauge = Metrics.CreateGauge("memory_virtual_set_bytes", "Current virtual memory usage in bytes.");
@@ -34,6 +32,6 @@ namespace API.Helpers.MetricsHelper
 		public void Dispose()
 		{
 			_timer?.Dispose();
-		}
+		}*/
 	}
 }

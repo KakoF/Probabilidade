@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Configs.MongoConfigs;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
+using OpenTelemetry.Metrics;
 
 namespace API.Extensions
 {
@@ -31,7 +32,30 @@ namespace API.Extensions
 			builder.Services.AddSwaggerGen();
 		}
 
-		public static void AddHealthChecks(this WebApplicationBuilder builder)
+		public static void AddTelemetriPrometheus(this WebApplicationBuilder builder)
+		{
+
+			builder.Services.AddOpenTelemetry()
+			.WithMetrics(builder =>
+			{
+				builder.AddRuntimeInstrumentation();
+				builder.AddMeter("Microsoft.AspNetCore.Hosting"
+					,"Microsoft.AspNetCore.Server.Kestrel"
+					, "Microsoft.AspNetCore.Http.Connections"
+					, "Microsoft.AspNetCore.Routing"
+					, "Microsoft.AspNetCore.Diagnostics"
+					, "Microsoft.AspNetCore.RateLimiting");
+				/*builder.AddView("http.server.request.duration",
+					new ExplicitBucketHistogramConfiguration
+					{
+						Boundaries = new double[] { 0, 0.005, 0.01, 0.025, 0.05,
+							  0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 }
+					});*/
+				builder.AddPrometheusExporter();
+			});
+		}
+
+		/*public static void AddHealthChecks(this WebApplicationBuilder builder)
 		{
 
 			builder.Services.AddHealthChecks()
@@ -45,8 +69,8 @@ namespace API.Extensions
 				failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
 				tags: new string[] { "db", "mongodb" }
 			);
-		}
+		}*/
 
-		
+
+		}
 	}
-}

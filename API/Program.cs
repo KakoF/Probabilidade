@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddCrossOrigin();
 builder.AddMongoConfiguration();
 builder.AddDocumentation();
-builder.AddHealthChecks();
+builder.AddTelemetriPrometheus();
 
 builder.Services.AddControllers()
   .AddNewtonsoftJson(options => options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore)
