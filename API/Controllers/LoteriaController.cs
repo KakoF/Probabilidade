@@ -6,19 +6,19 @@ using System.Text.RegularExpressions;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class LoteriaController : ControllerBase
-    {
+	[ApiController]
+	[Route("[controller]")]
+	public class LoteriaController : ControllerBase
+	{
 
-        [HttpGet]
-        public IEnumerable<Loteria> Get()
-        {
+		[HttpGet]
+		public IEnumerable<Loteria> Get()
+		{
 			return Enum.GetValues(typeof(eLoteria))
-	            .Cast<eLoteria>()
-	            .Select(v => new Loteria(v.ToString(), Regex.Replace(v.ToString(), "(\\B[A-Z])", " $1")))
-	            .ToList();
-        }
+				.Cast<eLoteria>()
+				.Select(v => new Loteria(v.ToString(), Regex.Replace(v.ToString(), "(\\B[A-Z])", " $1")))
+				.ToList();
+		}
 
 
 		[HttpGet("Random")]
@@ -26,7 +26,7 @@ namespace API.Controllers
 		{
 			Random random = new Random();
 			int randomNumber = random.Next(0, 101);
-			if (randomNumber >= 80)
+			if (randomNumber >= 30)
 				return BadRequest();
 
 			return Ok(Enum.GetValues(typeof(eLoteria))
